@@ -1,0 +1,6 @@
+site_name: Efflux Docs
+nav:
+  - Welcome: index.md
+  - Get started: get-started.md
+  - Work with Efflux: features.md
+theme: readthedocs
