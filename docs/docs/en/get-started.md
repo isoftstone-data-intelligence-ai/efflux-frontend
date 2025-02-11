@@ -1,36 +1,46 @@
-## Get started
+---
+title: Set up Efflux
+description: 	# for seo optimization
+keywords: 		# for seo optimization
+contributors: 
+	- Jun Ma
+---
 
-### Prerequisites
+## Prerequisites
 
-Make sure you have the following dependencies installed and set up the [efflux backend service](https://github.com/isoftstone-data-intelligence-ai/efflux-backend?tab=readme-ov-file#quick-start).
+Make sure the following dependencies have been installed:
 
-* Python 3.12 or higher versions
+- Python 3.12 or higher versions
 
-* PostgreSQL
+- Node.js 18 or higher versions
 
-### 1. Clone the repository
+- [Git](https://git-scm.com/downloads)
+
+- [Efflux backend service](https://github.com/isoftstone-data-intelligence-ai/efflux-backend?tab=readme-ov-file#quick-start)
+
+## 1. Clone the Repository
 
 In your terminal:
 
-```
+```sh
 git clone https://github.com/isoftstone-data-intelligence-ai/efflux-frontend.git
 ```
 
-### 2. Install the dependencies
+## 2. Install the Dependencies
 
 Enter the repository:
 
-```
+```sh
 cd efflux-frontend
 ```
 
 Run the following to install the required dependencies:
 
-```
+```sh
 npm i
 ```
 
-### 3. Set the environment variables
+## 3. Set the Environment Variables
 
 Create a `.env.local` file and set the following:
 
@@ -39,10 +49,10 @@ Create a `.env.local` file and set the following:
 E2B_API_KEY="your-e2b-api-key"
 
 # Get your Azure API key here https://learn.microsoft.com/en-us/azure/ai-services/openai/how-to/create-resource?tabs=portal
-AZURE_API_KEY=
+AZURE_API_KEY="your-azure-api-key"
 
 # API URL
-NEXT_PUBLIC_API_URL=
+NEXT_PUBLIC_API_URL="your-backend-service-url"
 
 # OpenAI API Key
 OPENAI_API_KEY=
@@ -83,14 +93,18 @@ NEXT_PUBLIC_POSTHOG_KEY=
 NEXT_PUBLIC_POSTHOG_HOST=
 ```
 
-### 4. Start the development server
+## 4. Start the Development Server
 
-```
+```sh
 npm run dev
 ```
 
-### 5. Build the web app
+Then you can access your local efflux at http://localhost:3000. The landing page looks like the following:
 
-```
-npm run build
-```
+![Efflux landing page](../assets/landing-page.png)
+
+## What's Next?
+
+* [Generate Code](generate-code.md)
+
+* [Work with MCP Server](work-with-MCP-server.md) 

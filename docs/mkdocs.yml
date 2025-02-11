@@ -1,6 +1,65 @@
+# website title
 site_name: Efflux Docs
-nav:
-  - Welcome: index.md
-  - Get started: get-started.md
-  - Work with Efflux: features.md
-theme: readthedocs
+
+# website URL
+site_url: https://jun-ma.github.io/efflux-frontend/
+repo_url: https://github.com/isoftstone-data-intelligence-ai/efflux-frontend
+
+# website style
+theme:
+  name: material
+  features:
+    - content.code.copy    # 代码块复制按钮
+    - content.code.select  # 允许选择代码语言
+    - content.code.annotate  # 显示代码语言
+    - navigation.top       # 返回顶部按钮
+    - content.tabs.link    # 代码块支持可点击的 tab 切换
+    - content.tooltips     # 鼠标悬停可显示提示信息
+
+# website navigation and multi-language
+plugins:
+  - search:
+      lang: 
+        - en
+        - zh
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          name: English
+          build: true
+          default: true
+          folder: en
+          nav:
+            - Overview: index.md
+            - Get Started: get-started.md
+            - Generate Code: generate-code.md
+            - Work with MCP: work-with-mcp.md
+            - Contribute to Efflux: contribute.md
+        - locale: zh
+          name: 中文
+          build: true
+          folder: zh
+          nav:
+            - 概览: index.md
+            - 快速开始: get-started.md
+            - 生成UI代码: generate-code.md
+            - 使用MCP: work-with-mcp.md
+            - 贡献: contribute.md
+            
+# mkdocs.yml
+dev_addr: 'localhost:8080'  # 修改`mkdocs serve`服务端口
+
+# markdown formats
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      linenums: true         # 可选：行号
+  - pymdownx.inlinehilite    # 支持行内代码高亮
+  - pymdownx.snippets
+  - pymdownx.extra
+  - pymdownx.superfences
+  - admonition
+  - pymdownx.details
+  - toc:
+      baselevel: 3
