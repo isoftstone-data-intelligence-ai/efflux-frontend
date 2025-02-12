@@ -2,10 +2,11 @@
 title: Generate Code for UI Components
 description: 	# for seo optimization
 keywords: 		# for seo optimization
-contributors: Jun Ma...
+contributors:
+  - Jun Ma
 ---
 
-# 生成UI代码
+# Generate Code for UI Components
 
 Efflux provides a chat-based interface where you can input text prompts and attach image files to get responses with generative code snippets of UI components. It supports real-time editing and customization to improve front-end development efficiency.
 

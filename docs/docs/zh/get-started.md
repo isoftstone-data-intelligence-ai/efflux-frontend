@@ -2,7 +2,8 @@
 title: Set up Efflux
 description: 	# for seo optimization
 keywords: 		# for seo optimization
-contributors: Jun Ma...
+contributors: 
+  - Jun Ma
 ---
 
 ## Prerequisites
@@ -17,31 +18,116 @@ Make sure the following dependencies have been installed:
 
 - [Efflux backend service](https://github.com/isoftstone-data-intelligence-ai/efflux-backend?tab=readme-ov-file#quick-start)
 
-## 1. Clone the Repository
+## Set up Backend Service
 
-In your terminal:
+1. Clone the project.
 
-```
+    ```sh
+    git clone git@github.com:isoftstone-data-intelligence-ai/efflux-backend.git
+    cd efflux-backend
+    ```
+
+2. Install `uv`.
+
+    ```sh
+    pip install uv
+    ```
+
+3. Reload dependencies.
+
+  ```sh
+  uv sync --reinstall
+  ```
+
+4. Activate virtual environment.
+
+  ```sh
+  # Activate virtual environment
+  source .venv/bin/activate   # MacOS/Linux
+
+  # Deactivate when needed
+  deactivate
+  ```
+
+5. Configure environment variables.
+
+  ```sh
+  # Copy environment variable template
+  cp .env.sample .env
+
+  # Edit .env file, configure:
+  # 1. Database connection info (DATABASE_NAME, DATABASE_USERNAME, DATABASE_PASSWORD)
+  # 2. At least one LLM configuration (e.g., Azure OpenAI, Qwen, Doubao, or Moonshot)
+  ```
+
+6. Select the LLM.
+
+  ```sh
+  # Edit core/common/container.py file
+  # Find the llm registration section, replace with any of the following models (Qwen by default):
+  # - QwenLlm: Qwen
+  # - AzureLlm: Azure OpenAI
+  # - DoubaoLlm: Doubao
+  # - MoonshotLlm: Moonshot
+
+  # Example: Using Azure OpenAI
+  from core.llm.azure_open_ai import AzureLlm
+  # ...
+  llm = providers.Singleton(AzureLlm)
+  ```
+
+7. Start PostgreSQL database.
+
+  ```sh
+  # Method 1: If PostgreSQL is installed locally
+  # Simply start your local PostgreSQL service
+
+  # Method 2: Using Docker (example)
+  docker run -d --name local-postgres \
+      -e POSTGRES_DB=your_database_name \
+      -e POSTGRES_USER=your_username \
+      -e POSTGRES_PASSWORD=your_password \
+      -p 5432:5432 \
+      postgres
+
+  # Note: Ensure database connection info matches the configuration in your .env file
+  ```
+
+8. Initialize the database.
+
+  ```sh
+  # Create a new version and generate a migration file in alembic/versions
+  alembic revision --autogenerate -m "initial migration"
+
+  # Preview SQL to be executed:
+  alembic upgrade head --sql
+
+  # If preview looks good, execute migration
+  alembic upgrade head
+  ```
+
+9. Start the service.
+
+  ```sh
+  python -m uvicorn main:app --host 0.0.0.0 --port 8000
+  ```
+
+## Set up Frontend Service
+
+1. Clone the repository.
+
+```sh
 git clone https://github.com/isoftstone-data-intelligence-ai/efflux-frontend.git
 ```
 
-## 2. Install the Dependencies
+2. Install the dependencies.
 
-Enter the repository:
-
-```
+```sh
 cd efflux-frontend
-```
-
-Run the following to install the required dependencies:
-
-```
 npm i
 ```
 
-## 3. Set the Environment Variables
-
-Create a `.env.local` file and set the following:
+3. Create a `.env.local` file and set the environment variables as follows:
 
 ```sh
 # Get your API key here - https://e2b.dev/
@@ -92,9 +178,9 @@ NEXT_PUBLIC_POSTHOG_KEY=
 NEXT_PUBLIC_POSTHOG_HOST=
 ```
 
-## 4. Start the Development Server
+4. Start the development server.
 
-```
+```sh
 npm run dev
 ```
 
@@ -106,4 +192,4 @@ Then you can access your local efflux at http://localhost:3000. The landing page
 
 * [Generate Code](generate-code.md)
 
-* [Work with MCP Server](work-with-MCP-server.md) 
+* [Work with MCP](work-with-mcp.md) 

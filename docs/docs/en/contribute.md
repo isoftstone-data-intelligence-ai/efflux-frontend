@@ -2,7 +2,8 @@
 title: Contribute to Efflux
 description: 	# for seo optimization
 keywords: 		# for seo optimization
-contributors: Jun Ma...
+contributors: 
+  - Jun Ma
 ---
 
 We welcome contributions from developers and users in the open source community in any ways to make Efflux better!

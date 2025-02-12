@@ -2,10 +2,11 @@
 title: Contribute to Efflux
 description: 	# for seo optimization
 keywords: 		# for seo optimization
-contributors: Jun Ma...
+contributors: 
+  - Jun Ma
 ---
 
-We welcome contributions in any ways! There are multiple ways you can help to make Efflux better.
+We welcome contributions from developers and users in the open source community in any ways to make Efflux better!
 
 ## Commit Code/Doc Changes
 
@@ -16,11 +17,12 @@ We welcome contributions in any ways! There are multiple ways you can help to ma
 5. Push to your branch (`git push origin feature-branch`).
 6. Open a pull request.
 
-Make sure you follow the coding standards and guidelines defined in the project. See the Contributing Guidelines for more details.
+!!! note
+	Make sure you follow the coding standards and guidelines defined in the project.
 
 ## Report Issues
 
-If you encounter any issues or bugs, feel free to open an issue in the respective repository. 
+If you encounter any issues or bugs, feel free to open an issue in the respective repository and include as much detail as you can. 
 
 Be sure to include:
 

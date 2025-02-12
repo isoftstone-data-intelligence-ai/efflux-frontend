@@ -2,7 +2,8 @@
 title: Generate Code for UI Components
 description: 	# for seo optimization
 keywords: 		# for seo optimization
-contributors: Jun Ma...
+contributors:
+  - Jun Ma
 ---
 
 # Generate Code for UI Components

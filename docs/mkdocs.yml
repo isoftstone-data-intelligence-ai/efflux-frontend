@@ -8,13 +8,15 @@ repo_url: https://github.com/isoftstone-data-intelligence-ai/efflux-frontend
 # website style
 theme:
   name: material
+  favicon: assets/favicon.ico
+  logo: assets/logo.svg
   features:
-    - content.code.copy    # 代码块复制按钮
-    - content.code.select  # 允许选择代码语言
-    - content.code.annotate  # 显示代码语言
-    - navigation.top       # 返回顶部按钮
-    - content.tabs.link    # 代码块支持可点击的 tab 切换
-    - content.tooltips     # 鼠标悬停可显示提示信息
+    - content.code.copy    # copy code
+    - content.code.select  # select code language
+    - content.code.annotate  # display code language
+    - navigation.top       # back to top
+    - content.tabs.link    # code tab
+    - content.tooltips
 
 # website navigation and multi-language
 plugins:
@@ -46,20 +48,21 @@ plugins:
             - 生成UI代码: generate-code.md
             - 使用MCP: work-with-mcp.md
             - 贡献: contribute.md
-            
+
 # mkdocs.yml
-dev_addr: 'localhost:8080'  # 修改`mkdocs serve`服务端口
+dev_addr: 'localhost:8080'  # port number for `mkdocs serve`
 
 # markdown formats
 markdown_extensions:
   - pymdownx.highlight:
       use_pygments: true
-      linenums: true         # 可选：行号
-  - pymdownx.inlinehilite    # 支持行内代码高亮
+  - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.extra
   - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
   - admonition
   - pymdownx.details
   - toc:
-      baselevel: 3
+      baselevel: 3  # maximum level of toc

@@ -2,21 +2,23 @@
 title: Work with MCP
 description: 	# for seo optimization
 keywords: 		# for seo optimization
-contributors: Jun Ma...
+contributors:
+  - Jun Ma
 ---
 
-Model Context Protocol (MCP) is an open standard that enables frontier AI models to produce more relevant responses by safely interacting with external tools and resources where data lives.
+Model Context Protocol (MCP) is an open standard that enables frontier LLMs to produce more relevant responses by safely interacting with external tools and resources where data lives.
 
 - **Resources**: Data (like API responses or file contents) that can be read by the selected LLM.
 - **Tools**: Functions that can be called by the selected LLM.
 
 Efflux's native MCP support helps you build secure and controlled access to your external data sources and tools, and then chat with them to get grounded information. 
 
-For a comprehensive list of reference implementations of MCP servers, visit the [open repo](https://github.com/modelcontextprotocol/servers).
+!!! tip
+	For a comprehensive list of reference implementations of MCP servers, visit the [MCP SDK Repo](https://github.com/modelcontextprotocol/servers).
 
 ## Connect to Data Sources
 
-This section introduces how to set up an MCP connector to extend your data sources.
+This section introduces an example of how to set up an MCP connector to extend your data sources using [`Sqlite`](https://github.com/modelcontextprotocol/servers/tree/main/src/sqlite).
 
 1. Prepare a database file named `demo.db` in the root directory of the efflux-backend service. Let's say, the file contains the following data:
 
@@ -89,7 +91,7 @@ This section introduces how to set up an MCP connector to extend your data sourc
 
 ## Connect to Tools
 
-This section introduces how to set up an MCP connector to utilize a function.
+This section introduces an example of how to set up an MCP connector to utilize a function using [`FastMCP`](https://github.com/jlowin/fastmcp).
 
 1. Prepare a python file named `addition-operator.py` to the `/core/mcp/server/` directory of the efflux-backend service. Let's say, the file contains the following script to perform an addition operation:
 

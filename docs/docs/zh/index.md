@@ -2,7 +2,8 @@
 title: Overview
 description:  # for seo optimization
 keywords:     # for seo optimization
-contributors: Jun Ma...
+contributors:
+  - Jun Ma
 ---
 
 ## What's Efflux?
@@ -13,7 +14,7 @@ Simply put, Efflux can serve as:
 
 * a generative UI tool designed to help developers code UI components as simple as describing ideas. See [Generate Code](generate-code.md) for more details.
 
-* an out-of-box MCP (Model Context Protocol) host to unlock the capabilities of connected MCP servers and loaded tools, enabling wider data access for large language models with standardized contexts. See [Work with MCP](work-with-mcp.md) for more details.
+* an out-of-box MCP (Model Context Protocol) host to unlock the database interaction and business intelligence capabilities, by enabling wider data access and providing standardized context and tools to your LLMs. See [Work with MCP](work-with-mcp.md) for more details.
 
 ## ✨Core Features
 
@@ -27,10 +28,6 @@ Simply put, Efflux can serve as:
     - Parallel access to multiple MCP servers
     - Custom protocol adapter
     - Agent routing management
-
-- **Intelligent Extension**
-    - Plugin marketplace support
-    - Workflow orchestration engine
 
 ## 🧩Architecture
 
@@ -62,3 +59,7 @@ Here's how you can get involved:
 * commit pull requests to improve codes and docs
 
 For more details, visit [Contribute to Efflux](contribute.md).
+
+## 📄License
+
+Efflux is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. 
