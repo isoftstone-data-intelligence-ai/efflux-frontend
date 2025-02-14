@@ -7,47 +7,70 @@ contributors:
 ---
 
 ## What's Efflux?
+    
+Efflux, the next-generation AI interaction platform, is a powerful, lightweight, and highly flexible framework that seamlessly integrates state-of-the-art LLMs (large language models), generative front-end technologies, and MCP (Model Context Protocols) servers. It redefines the way AI-driven applications are deployed and scaled, offering unparalleled efficiency and adaptability.
 
-Efflux, the next-generation AI interaction platform, is an advanced, lightweight, and flexible framework seamlessly integrating various AI-powered LLMs (large language models), generative front-end technologies, and MCP (Model Context Protocols) servers to achieve a new paradigm of deploying and scaling AI-driven applications.
+In essence, Efflux can serve as:
 
-Simply put, Efflux can serve as:
+* **An LLM-powered chatbot** that engages in natural conversations with users.
 
-* a generative UI tool designed to help developers code UI components as simple as describing ideas. See [Generate Code](generate-code.md) for more details.
+* **A text-to-UI and image-to-UI tool** that helps developers create code snippets effortlessly —— simply by describing their ideas. Efflux can also render the generated UI code in real time, allowing you to immediately test and iterate. 
 
-* an out-of-box MCP (Model Context Protocol) host to unlock the database interaction and business intelligence capabilities, by enabling wider data access and providing standardized context and tools to your LLMs. See [Work with MCP](work-with-mcp.md) for more details.
+    *Explore more → [Generate Code](generate-code.md)*
+
+* **A ready-to-use MCP (Model Context Protocol) host**, unlocking your LLMs' potential and expanding more capabilities by enabling wider data access and integrating custom tools, including but not limited to database interaction and business intelligence.
+
+    *Explore more → [Work with MCP](work-with-mcp.md)*
+
+## 🌟Why Efflux?
+
+Efflux empowers developers and enthusiasts to:
+
+- **Build Conversational AI Agents**
+
+    Create human-like chatbots with contextual awareness and conversation history management.
+
+- **Accelerate Development Workflows**
+
+    Effortlessly generate code snippets - from UI components to APIs and full-stack modules.
+
+- **Unlock Advanced Capabilities**
+
+    Leverage MCP servers to seamlessly integrate databases, various tools, and more while maintaining data governance.
 
 ## ✨Core Features
 
-- **Generative UI**
-    - Chat-based interface with chat history management
-    - Multi-LLM support (Claude, DeepSeek, etc.)
-    - Artifacts dynamic rendering engine
-    - Context memory management
-
-- **Native MCP Support**
-    - Parallel access to multiple MCP servers
-    - Custom protocol adapter
-    - Agent routing management
+- Intuitive chat-based interface with history management
+- Multi-LLM support (Claude, DeepSeek, and many more)
+- Native MCP integration with unlimited possibilities
+- Dynamic artifact rendering engine
+- Advanced context memory management
 
 ## 🧩Architecture
 
 ```
-EFFLUX
+Efflux
 ├── Core
-│   ├── MCP Adapter       # Protocol translation layer
-│   ├── Model Router      # Intelligent routing
-│   └── Context Manager   # Dialog context management
-├── Artifacts Engine      # Dynamic front-end rendering
+│   ├── MCP Manager           # MCP management
+│   ├── Model Router          # Intelligent routing
+│   └── Context Manager       # Conversation context management
 ├── Service Layer
-│   ├── LLM Services      # Multiple LLM access
-│   └── Agent Gateway     # Agent service gateway
-├── Plugin System         # Extension module
-└── Web Interface         # Interactive website
+│   ├── LLM Manager           # Multiple LLM management
+│   ├── Model Switching       # Model switching
+│   ├── Agent Node            # Agent node
+│   └── Intelligent Reasoning # Intelligent reasoning
+├── Extension
+│   └── Plugin System         # Pluggable extension
+└── Web                   
+    ├── Artifacts Engine      # Dynamic front-end rendering
+    ├── Web Interface         # Interactive interface
+    ├── UI Stream Response    # Streaming response
+    └── Sandbox Debugging     # Sandbox debugging
 ```
 
 ## 🚀Get Started
 
-Setting up Efflux is just a few clicks away. For more details, visit [Get started](get-started.md).
+Setting up Efflux is just a few clicks away. For more details, visit [Get Started](get-started.md).
 
 ## 🤝Contribute to Efflux
 
@@ -59,7 +82,3 @@ Here's how you can get involved:
 * commit pull requests to improve codes and docs
 
 For more details, visit [Contribute to Efflux](contribute.md).
-
-## 📄License
-
-Efflux is licensed under the MIT License. This means you are free to use, modify, and distribute the software, subject to the terms and conditions of the MIT License. 

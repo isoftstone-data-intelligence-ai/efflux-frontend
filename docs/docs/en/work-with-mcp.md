@@ -94,11 +94,11 @@ This section introduces an example of how to set up an MCP connector to extend y
 
 This section introduces an example of how to set up an MCP connector to fetch weather forecasts and severe weather alerts using [`FastMCP`](https://github.com/jlowin/fastmcp).
 
-1. 
+1. Create and set up your project under the directory of your efflux-backend repo.
 
 	=== "MacOS/Linux"
 		```sh
-		# Create a new directory for our project
+		# Create a new directory for your project
 		uv init weather
 		cd weather
 
@@ -109,14 +109,14 @@ This section introduces an example of how to set up an MCP connector to fetch we
 		# Install dependencies
 		uv add "mcp[cli]" httpx
 
-		# Create a server file
+		# Create your server file
 		cd ../core/mcp/server
 		touch weather.py
 		```
 
 	=== "Windows"
 		```sh
-		# Create a new directory for our project
+		# Create a new directory for your project
 		uv init weather
 		cd weather
 
@@ -127,11 +127,11 @@ This section introduces an example of how to set up an MCP connector to fetch we
 		# Install dependencies
 		uv add mcp[cli] httpx
 
-		# Create a server file
+		# Create your server file
 		new-item ./core/mcp/server/weather.py
 		```
 
-2. Paste the following content to the `weather.py` file udner the `/core/mcp/server/` directory of the efflux-backend service. 
+2. Paste the following content to the `/core/mcp/server/weather.py` file. 
 
 	=== "Python"
 	```python
