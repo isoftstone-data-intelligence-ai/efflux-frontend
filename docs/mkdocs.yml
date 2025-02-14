@@ -56,6 +56,7 @@ dev_addr: 'localhost:8080'  # port number for `mkdocs serve`
 markdown_extensions:
   - pymdownx.highlight:
       use_pygments: true
+      pygments_lang_class: true
   - pymdownx.inlinehilite
   - pymdownx.snippets
   - pymdownx.extra
