@@ -94,7 +94,44 @@ This section introduces an example of how to set up an MCP connector to extend y
 
 This section introduces an example of how to set up an MCP connector to fetch weather forecasts and severe weather alerts using [`FastMCP`](https://github.com/jlowin/fastmcp).
 
-1. Prepare a python file named `weather.py` to the `/core/mcp/server/` directory of the efflux-backend service. The file should contain the following script:
+1. 
+
+	=== "MacOS/Linux"
+		```sh
+		# Create a new directory for our project
+		uv init weather
+		cd weather
+
+		# Create virtual environment and activate it
+		uv venv
+		source .venv/bin/activate
+
+		# Install dependencies
+		uv add "mcp[cli]" httpx
+
+		# Create a server file
+		cd ../core/mcp/server
+		touch weather.py
+		```
+
+	=== "Windows"
+		```sh
+		# Create a new directory for our project
+		uv init weather
+		cd weather
+
+		# Create virtual environment and activate it
+		uv venv
+		.venv\Scripts\activate
+
+		# Install dependencies
+		uv add mcp[cli] httpx
+
+		# Create a server file
+		new-item ./core/mcp/server/weather.py
+		```
+
+2. Paste the following content to the `weather.py` file udner the `/core/mcp/server/` directory of the efflux-backend service. 
 
 	=== "Python"
 	```python
@@ -183,7 +220,7 @@ This section introduces an example of how to set up an MCP connector to fetch we
     	for period in periods[:5]:  # Only show next 5 periods
         	forecast = f"""
 	{period['name']}:
-	Temperature: {period['temperature']}°{period['temperatureUnit']}
+	Temperature: {period['temperature']} {period['temperatureUnit']}
 	Wind: {period['windSpeed']} {period['windDirection']}
 	Forecast: {period['detailedForecast']}
 	"""
@@ -197,7 +234,7 @@ This section introduces an example of how to set up an MCP connector to fetch we
   	mcp.run(transport='stdio')
 	```
 
-2. Select **MCP** in the **Tools** dropdown of Efflux, and click the **Settings** icon to add an MCP server with the following parameters.
+3. Select **MCP** in the **Tools** dropdown of Efflux, and click the **Settings** icon to add an MCP server with the following parameters.
 
 	![Add MCP Server](../assets/fast-mcp-weather.png)
 
@@ -217,7 +254,7 @@ This section introduces an example of how to set up an MCP connector to fetch we
     }
 	```
 
-3. Select **weather** in the **Servers** dropdown, and prompt Efflux, for example, `What are the active weather alerts in NY?`.
+4. Select **weather** in the **Servers** dropdown, and prompt Efflux, for example, `What are the active weather alerts in NY?`.
 
 	Then you will get a response similar to the following:
 
