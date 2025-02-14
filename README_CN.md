@@ -2,6 +2,9 @@
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
+## 在线演示
+您可以通过访问我们的[在线演示](http://47.236.204.213:3000/login)来体验Efflux的功能。
+
 ## 特性
 
 - 基于 Next.js 14 (App Router, Server Actions)、shadcn/ui、TailwindCSS 和 Vercel AI SDK 构建
