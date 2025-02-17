@@ -8,7 +8,7 @@ contributors:
 
 Efflux provides a chat-based interface where you can input text prompts to get responses with generative code snippets. For UI components, Efflux can render the generated code and provide an interactive environment for you to try it out. What's more, you can upload image files of UI components to build similar pages with one click. 
 
-  ![Efflux demo](../assets/code-login.gif)
+  ![Efflux Text-to-UI](../assets/text-to-UI.gif)
 
 ## How it Works
 

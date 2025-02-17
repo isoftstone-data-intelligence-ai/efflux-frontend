@@ -17,6 +17,7 @@ theme:
     - navigation.top       # back to top
     - content.tabs.link    # code tab
     - content.tooltips
+  custom_dir: docs/overrides
 
 # website navigation and multi-language
 plugins:
@@ -67,3 +68,8 @@ markdown_extensions:
   - pymdownx.details
   - toc:
       baselevel: 3  # maximum level of toc
+
+
+# feedback
+extra_javascript:
+  - docs/javascripts/feedback.js
