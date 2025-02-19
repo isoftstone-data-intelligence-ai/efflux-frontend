@@ -14,6 +14,12 @@ Efflux 可以是：
 
 * **开箱即用的 MCP（模型上下文协议）主机**，通过更广泛的数据访问和集成自定义工具释放 LLM 潜力。
 
+
+## 在线演示
+
+您可以通过访问[在线演示](http://47.236.204.213:3000/login)来体验Efflux的功能。
+
+
 ## 特性
 
 - 基于 Next.js 14 (App Router, Server Actions)、shadcn/ui、TailwindCSS 和 Vercel AI SDK 构建

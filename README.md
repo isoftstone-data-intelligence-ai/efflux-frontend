@@ -15,6 +15,10 @@ In essence, Efflux can serve as:
 * **A ready-to-use MCP (Model Context Protocol) host**, unlocking your LLMs' potential and expanding more capabilities by enabling wider data access and integrating custom tools, including but not limited to database interaction and business intelligence.
 
 
+## Online Demo
+Experience Efflux in action through our [online demo](http://47.236.204.213:3000/login).
+
+
 ## Features
 
 - Based on Next.js 14 (App Router, Server Actions), shadcn/ui, TailwindCSS, Vercel AI SDK.
