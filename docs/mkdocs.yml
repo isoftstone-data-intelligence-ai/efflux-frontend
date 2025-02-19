@@ -1,0 +1,75 @@
+# website title
+site_name: Efflux Docs
+
+# website URL
+site_url: https://jun-ma.github.io/efflux-frontend/
+repo_url: https://github.com/isoftstone-data-intelligence-ai/efflux-frontend
+
+# website style
+theme:
+  name: material
+  favicon: assets/favicon.ico
+  logo: assets/logo.svg
+  features:
+    - content.code.copy    # copy code
+    - content.code.select  # select code language
+    - content.code.annotate  # display code language
+    - navigation.top       # back to top
+    - content.tabs.link    # code tab
+    - content.tooltips
+  custom_dir: docs/overrides
+
+# website navigation and multi-language
+plugins:
+  - search:
+      lang: 
+        - en
+        - zh
+  - i18n:
+      docs_structure: folder
+      languages:
+        - locale: en
+          name: English
+          build: true
+          default: true
+          folder: en
+          nav:
+            - Overview: index.md
+            - Get Started: get-started.md
+            - Generate Code: generate-code.md
+            - Work with MCP: work-with-mcp.md
+            - Contribute to Efflux: contribute.md
+        - locale: zh
+          name: 中文
+          build: true
+          folder: zh
+          nav:
+            - 概览: index.md
+            - 快速开始: get-started.md
+            - 生成UI代码: generate-code.md
+            - 使用MCP: work-with-mcp.md
+            - 贡献: contribute.md
+
+# mkdocs.yml
+dev_addr: 'localhost:8080'  # port number for `mkdocs serve`
+
+# markdown formats
+markdown_extensions:
+  - pymdownx.highlight:
+      use_pygments: true
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.extra
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - admonition
+  - pymdownx.details
+  - toc:
+      baselevel: 3  # maximum level of toc
+
+
+# feedback
+extra_javascript:
+  - docs/javascripts/feedback.js
