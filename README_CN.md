@@ -2,6 +2,18 @@
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
+## Efflux是什么?
+
+Efflux 是一款新一代 AI 交互平台 —— 一个强大、轻量且高度灵活的框架，可无缝集成最先进的大语言模型（LLMs）、生成式前端技术以及 MCP（模型上下文协议）服务器。它重新定义了 AI 驱动应用的部署和扩展方式，可以通过接入海量社区工具，构建普惠AI生态。
+
+Efflux 可以是：
+
+* **基于 LLM 的聊天机器人**，能够与用户进行自然语言对话。
+
+* **文本到组件（Text-to-Artifact）生成工具**，帮助开发者轻松创建代码片段 —— 只需描述你的想法即可。Efflux 能实时渲染生成的 UI 代码，让你能够立即测试和迭代。
+
+* **开箱即用的 MCP（模型上下文协议）主机**，通过更广泛的数据访问和集成自定义工具释放 LLM 潜力。
+
 ## 特性
 
 - 基于 Next.js 14 (App Router, Server Actions)、shadcn/ui、TailwindCSS 和 Vercel AI SDK 构建
@@ -96,3 +108,9 @@ npm run dev
 
 ```
 npm run build
+```
+
+
+## 文档
+
+有关更多信息和指导，请查看 [Efflux Docs](http://localhost:8080/efflux-frontend/zh/)。

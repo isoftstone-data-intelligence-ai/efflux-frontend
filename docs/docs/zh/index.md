@@ -6,21 +6,21 @@ contributors:
   - Jun Ma
 ---
 
-## What's Efflux?
-    
-Efflux, the next-generation AI interaction platform, is a powerful, lightweight, and highly flexible framework that seamlessly integrates state-of-the-art LLMs (large language models), generative front-end technologies, and MCP (Model Context Protocols) servers. It redefines the way AI-driven applications are deployed and scaled, offering unparalleled efficiency and adaptability.
+## Efflux是什么?
 
-In essence, Efflux can serve as:
+Efflux 是一款新一代 AI 交互平台 —— 一个强大、轻量且高度灵活的框架，可无缝集成最先进的大语言模型（LLMs）、生成式前端技术以及 MCP（模型上下文协议）服务器。它重新定义了 AI 驱动应用的部署和扩展方式，可以通过接入海量社区工具，构建普惠AI生态。
 
-* **An LLM-powered chatbot** that engages in natural conversations with users.
+Efflux 可以是：
 
-* **A text-to-UI and image-to-UI tool** that helps developers create code snippets effortlessly —— simply by describing their ideas. Efflux can also render the generated UI code in real time, allowing you to immediately test and iterate. 
+* **基于 LLM 的聊天机器人**，能够与用户进行自然语言对话。
 
-    *Explore more → [Generate Code](generate-code.md)*
+* **文本到组件（Text-to-Artifact）生成工具**，帮助开发者轻松创建代码片段 —— 只需描述你的想法即可。Efflux 能实时渲染生成的 UI 代码，让你能够立即测试和迭代。
 
-* **A ready-to-use MCP (Model Context Protocol) host**, unlocking your LLMs' potential and expanding more capabilities by enabling wider data access and integrating custom tools, including but not limited to database interaction and business intelligence.
+    *探索更多 → [生成UI代码](generate-code.md)*
 
-    *Explore more → [Work with MCP](work-with-mcp.md)*
+* **开箱即用的 MCP（模型上下文协议）主机**，通过更广泛的数据访问和集成自定义工具释放 LLM 潜力。
+
+    *探索更多 → [使用MCP](work-with-mcp.md)*
 
 ## 🌟Why Efflux?
 

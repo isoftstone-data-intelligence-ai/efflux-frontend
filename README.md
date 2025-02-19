@@ -2,6 +2,19 @@
 
 [English](./README.md) | [简体中文](./README_CN.md)
 
+## What's Efflux?
+
+Efflux, the next-generation AI interaction platform, is a powerful, lightweight, and highly flexible framework that seamlessly integrates state-of-the-art LLMs (large language models), generative front-end technologies, and MCP (Model Context Protocols) servers. It redefines the way AI-driven applications are deployed and scaled, offering unparalleled efficiency and adaptability.
+
+In essence, Efflux can serve as:
+
+* **An LLM-powered chatbot** that engages in natural conversations with users.
+
+* **A text-to-artifact tool** that helps developers create code snippets effortlessly —— simply by describing their ideas. Efflux can also render the generated UI code in real time, allowing you to immediately test and iterate. 
+
+* **A ready-to-use MCP (Model Context Protocol) host**, unlocking your LLMs' potential and expanding more capabilities by enabling wider data access and integrating custom tools, including but not limited to database interaction and business intelligence.
+
+
 ## Features
 
 - Based on Next.js 14 (App Router, Server Actions), shadcn/ui, TailwindCSS, Vercel AI SDK.
@@ -98,3 +111,9 @@ npm run dev
 
 ```
 npm run build
+```
+
+
+## Documentation
+
+For more information and guidance, check out [Efflux Docs](https://jun-ma.github.io/efflux-frontend/). 

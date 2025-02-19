@@ -7,14 +7,14 @@ contributors:
 ---
 
 ## What's Efflux?
-    
+
 Efflux, the next-generation AI interaction platform, is a powerful, lightweight, and highly flexible framework that seamlessly integrates state-of-the-art LLMs (large language models), generative front-end technologies, and MCP (Model Context Protocols) servers. It redefines the way AI-driven applications are deployed and scaled, offering unparalleled efficiency and adaptability.
 
 In essence, Efflux can serve as:
 
 * **An LLM-powered chatbot** that engages in natural conversations with users.
 
-* **A text-to-UI and image-to-UI tool** that helps developers create code snippets effortlessly —— simply by describing their ideas. Efflux can also render the generated UI code in real time, allowing you to immediately test and iterate. 
+* **A text-to-artifact tool** that helps developers create code snippets effortlessly —— simply by describing their ideas. Efflux can also render the generated UI code in real time, allowing you to immediately test and iterate. 
 
     *Explore more → [Generate Code](generate-code.md)*
 
