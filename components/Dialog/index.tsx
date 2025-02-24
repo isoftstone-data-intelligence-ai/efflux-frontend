@@ -23,9 +23,6 @@ export default class extends Component {
     id: 0,
     type: 'add',
   }
-  componentDidMount() {
-    this.getData()
-  }
   getData = async () => {
     var rs = await getServerList({userId:1})
     if (rs.data?.code == 200) {

@@ -7,7 +7,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { getServerList } from '@/lib/api'
+import { getServerList, getTemplates,getConfigs } from '@/lib/api'
 import { LLMModel, LLMModelConfig } from '@/lib/models'
 import { TemplateId, Templates } from '@/lib/templates'
 import 'core-js/features/object/group-by.js'
@@ -28,6 +28,10 @@ export function ChatPicker({
 
   toolsValue,
   toolsChange,
+  templatesList,
+  codeTemplateMap,
+  isMcpSelected,
+  isArtifactsSelected,
 }: {
   templates: Templates
   selectedTemplate: 'auto' | TemplateId
@@ -41,12 +45,13 @@ export function ChatPicker({
   const [list, setList] = useState([])
 
   var getData = async () => {
-    var rs = await getServerList({userId:1})
+    var rs = await getServerList({ userId: 1 })
     if (rs.data?.code == 200) {
       var data = rs.data.data
       setList(data)
     }
   }
+
 
   useEffect(() => {
     getData()
@@ -54,12 +59,12 @@ export function ChatPicker({
 
   var tools = [
     { label: 'Mcp', value: 'mcp' },
-    { label: 'Code', value: 'code' },
+    { label: 'Artifacts', value: 'code' },
   ]
 
   return (
     <div className="flex items-center space-x-2">
-      <div className="flex flex-col">
+      {/* <div className="flex flex-col">
         <Select
           name="Tools"
           defaultValue={toolsValue}
@@ -81,54 +86,42 @@ export function ChatPicker({
             </SelectGroup>
           </SelectContent>
         </Select>
-      </div>
-
-      {
-        toolsValue == 'code' && <>
-          <div className="flex flex-col">
-            <Select
-              name="template"
-              defaultValue={selectedTemplate}
-              onValueChange={onSelectedTemplateChange}
-            >
-              <SelectTrigger className="whitespace-nowrap border-none shadow-none focus:ring-0 px-0 py-0 h-6 text-xs">
-                <SelectValue placeholder="Select a persona" />
-              </SelectTrigger>
-              <SelectContent side="top">
-                <SelectGroup>
-                  <SelectLabel>Persona</SelectLabel>
-                  <SelectItem value="auto">
+      </div> */}
+      <div className="flex flex-col" style={{ display: toolsValue == 'mcp' ? 'block' : 'block' }}>
+        <Select
+          name="languageModel"
+          defaultValue={languageModel.model}
+          onValueChange={(e) => onLanguageModelChange({ model: e })}
+        >
+          <SelectTrigger className="whitespace-nowrap border-none shadow-none focus:ring-0 px-0 py-0 h-6 text-xs">
+            <SelectValue placeholder="Language model" />
+          </SelectTrigger>
+          <SelectContent>
+            {Object.entries(
+              Object.groupBy(templatesList, ({ provider }) => provider),
+            ).map(([provider, templatesList]) => (
+              <SelectGroup key={provider}>
+                <SelectLabel>{provider}</SelectLabel>
+                {templatesList?.map((model) => (
+                  <SelectItem key={String(model.id)} value={String(model.id)}>
                     <div className="flex items-center space-x-2">
-                      <Sparkles
-                        className="flex text-[#a1a1aa]"
+                      <Image
+                        className="flex"
+                        src={`/thirdparty/logos/${'openai'}.svg`}
+                        alt={model.provider}
                         width={14}
                         height={14}
                       />
-                      <span>Auto</span>
+                      <span>{model.model_display_name}</span>
                     </div>
                   </SelectItem>
-                  {Object.entries(templates).map(([templateId, template]) => (
-                    <SelectItem key={templateId} value={templateId}>
-                      <div className="flex items-center space-x-2">
-                        <Image
-                          className="flex"
-                          src={`/thirdparty/templates/${templateId}.svg`}
-                          alt={templateId}
-                          width={14}
-                          height={14}
-                        />
-                        <span>{template.name}</span>
-                      </div>
-                    </SelectItem>
-                  ))}
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-        </>
-      }
-      <div className="flex flex-col" style={{ display: toolsValue == 'mcp' ? 'none':'block'  }}>
-        <Select
+                ))}
+              </SelectGroup>
+            ))}
+          </SelectContent>
+        </Select>
+
+        {/* <Select
           name="languageModel"
           defaultValue={languageModel.model}
           onValueChange={(e) => onLanguageModelChange({ model: e })}
@@ -159,10 +152,55 @@ export function ChatPicker({
               </SelectGroup>
             ))}
           </SelectContent>
-        </Select>
+        </Select> */}
       </div>
       {
-        toolsValue == 'mcp' && <>
+        isArtifactsSelected && <>
+          <div className="flex flex-col">
+            <Select
+              name="template"
+              defaultValue={selectedTemplate}
+              onValueChange={onSelectedTemplateChange}
+            >
+              <SelectTrigger className="whitespace-nowrap border-none shadow-none focus:ring-0 px-0 py-0 h-6 text-xs">
+                <SelectValue placeholder="Select a persona" />
+              </SelectTrigger>
+              <SelectContent side="top">
+                <SelectGroup>
+                  <SelectLabel>Persona</SelectLabel>
+                  <SelectItem value="auto">
+                    <div className="flex items-center space-x-2">
+                      <Sparkles
+                        className="flex text-[#a1a1aa]"
+                        width={14}
+                        height={14}
+                      />
+                      <span>Auto</span>
+                    </div>
+                  </SelectItem>
+                  {Object.entries(codeTemplateMap).map(([templateId, template]) => (
+                    <SelectItem key={templateId} value={templateId}>
+                      <div className="flex items-center space-x-2">
+                        <Image
+                          className="flex"
+                          src={`/thirdparty/templates/${templateId}.svg`}
+                          alt={templateId}
+                          width={14}
+                          height={14}
+                        />
+                        <span>{template.name}</span>
+                      </div>
+                    </SelectItem>
+                  ))}
+                </SelectGroup>
+              </SelectContent>
+            </Select>
+          </div>
+        </>
+      }
+      
+      {
+        isMcpSelected && <>
           <div className="flex flex-col">
             <Select
               name="server_name"

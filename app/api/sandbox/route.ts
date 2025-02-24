@@ -2,7 +2,7 @@ import { FragmentSchema } from '@/lib/schema'
 import { ExecutionResultInterpreter, ExecutionResultWeb } from '@/lib/types'
 import { Sandbox } from '@e2b/code-interpreter'
 
-const sandboxTimeout = 10 * 60 * 1000 // 10 minute in ms
+const sandboxTimeout = 2 * 60 * 1000 // 10 minute in ms
 
 export const maxDuration = 60
 

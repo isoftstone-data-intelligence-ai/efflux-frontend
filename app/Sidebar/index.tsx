@@ -1,8 +1,12 @@
+'use client';
+
 import React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import './index.css'
 import { getChatList } from '@/lib/api'
 
+let lastCallTime = 0;
+const THROTTLE_DELAY = 1000; // 3 seconds
 
 export default class extends React.Component {
   state = {
@@ -13,8 +17,12 @@ export default class extends React.Component {
   };
 
   componentDidMount = async () => {
-    this.getList((data) => {
-      var selectedChat = window.localStorage.getItem('selectedChat')
+    this.throttledGetList((data) => {
+      var selectedChat = ''
+      if (typeof window !== 'undefined') {
+        selectedChat = window.localStorage.getItem('selectedChat')
+      }
+
       var selectedItem = null
       data.forEach((item) => {
         if (String(item.id) == selectedChat) {
@@ -25,17 +33,26 @@ export default class extends React.Component {
       var obj = {
         selectedChat: selectedChat ? parseInt(selectedChat) : null,
         selectedItem: selectedItem,
+        // open: true,
       }
 
       if(selectedItem){
         this.props.setMessages(selectedItem.chat_messages)
       }
       
-      this.setState(obj)
+      this.setState(obj);
     })
   }
 
-  getList = async (back = () => { }) => {
+  throttledGetList = (callback = () => {}) => {
+    const now = Date.now();
+    if (now - lastCallTime >= THROTTLE_DELAY) {
+      this.getList(callback);
+      lastCallTime = now;
+    }
+  }
+
+  getList = async (back = () => {}) => {
     var rs = await getChatList({ userId: 1 })
     if (rs.data?.code == 200) {
       var data = rs.data.data
@@ -50,6 +67,7 @@ export default class extends React.Component {
     this.setState({ open: false });
     this.props.onAdd()
   }
+
   handleChatSelect = (chatId: string) => {
     var { chats } = this.state
     var obj = {}
@@ -57,7 +75,9 @@ export default class extends React.Component {
       if (item.id == chatId) obj = item
     })
     this.setState({ selectedChat: chatId, selectedItem: obj });
-    window.localStorage.setItem('selectedChat', chatId)
+    if (typeof window !== 'undefined') {
+      window.localStorage.setItem('selectedChat', chatId)
+    }
     this.props.setMessages(obj.chat_messages)
   };
 
@@ -67,9 +87,14 @@ export default class extends React.Component {
 
     return (
       <div className="sidebar-wrapper">
-        <Dialog.Root open={open} onOpenChange={(val) => { this.setState({ open: val }) }}>
+        <Dialog.Root open={open} onOpenChange={(val) => {
+          if (val) {
+            this.throttledGetList()
+          }
+          this.setState({ open: val })
+        }}>
           <Dialog.Trigger asChild>
-            <button className={`trigger-button ${theme}`} type="button" disabled={disabled}>
+            <button className={`trigger-button ${theme}`} type="button" disabled={disabled} tabIndex={-1}>
               <svg width="20" height="20" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M6.1584 3.13508C6.35985 2.94621 6.67627 2.95642 6.86514 3.15788L10.6151 7.15788C10.7954 7.3502 10.7954 7.64949 10.6151 7.84182L6.86514 11.8418C6.67627 12.0433 6.35985 12.0535 6.1584 11.8646C5.95694 11.6757 5.94673 11.3593 6.1356 11.1579L9.565 7.49985L6.1356 3.84182C5.94673 3.64036 5.95694 3.32394 6.1584 3.13508Z" fill="currentColor" fillRule="evenodd" clipRule="evenodd" />
               </svg>
@@ -82,7 +107,7 @@ export default class extends React.Component {
               Navigation menu for accessing different sections of the application
             </Dialog.Description>
 
-            <div className={`w-64 h-screen bg-white border-r border-gray-200 ${theme}`} style={{overflow: 'auto'}}>
+            <div className={`w-64 h-screen bg-white border-r  ${theme}`} style={{overflow: 'auto'}}>
               <div className="p-4">
                 <div className="flex items-center justify-between mb-4">
                   <div className="text-black text-xl font-bold">Chat</div>

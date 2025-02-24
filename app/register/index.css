@@ -1,0 +1,161 @@
+.register-page {
+  width: 100%;
+  min-height: 100vh;
+}
+
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.register-container.light {
+  background-color: #f0f2f5;
+  color: #000;
+}
+
+.register-container.dark {
+  background-color: #1a1a1a;
+  color: #fff;
+}
+
+.register-form {
+  width: 100%;
+  max-width: 400px;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s;
+}
+
+.register-form-light {
+  background-color: #ffffff !important;
+}
+
+.register-form-dark {
+  background-color: #2d2d2d !important;
+}
+
+.register-form h1 {
+  text-align: center;
+  margin-bottom: 24px;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.register-form-group {
+  margin-bottom: 20px;
+}
+
+.register-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.register-form-group input {
+  width: 100%;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #d9d9d9;
+  font-size: 16px;
+  transition: all 0.3s;
+}
+
+.register-form-light .register-form-group input {
+  background-color: #ffffff;
+  color: #000000;
+  border-color: #d9d9d9;
+}
+
+.register-form-dark .register-form-group input {
+  background-color: #3d3d3d;
+  color: #ffffff;
+  border-color: #4d4d4d;
+}
+
+.register-form-group input:focus {
+  outline: none;
+  border-color: #177ddc;
+  box-shadow: 0 0 0 2px rgba(23, 125, 220, 0.2);
+}
+
+.register-submit-button {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.register-submit-button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.register-submit-button-light {
+  background-color: #18181B;
+  color: #ffffff;
+}
+
+.register-submit-button-light:hover:not(:disabled) {
+  background-color: #27272a;
+}
+
+.register-submit-button-dark {
+  background-color: #ffffff;
+  color: #18181B;
+}
+
+.register-submit-button-dark:hover:not(:disabled) {
+  background-color: #f4f4f5;
+}
+
+.register-theme-toggle {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 4px;
+  transition: opacity 0.3s;
+  color: inherit;
+}
+
+.register-theme-toggle:hover {
+  opacity: 0.8;
+}
+
+.register-page-link {
+  text-align: center;
+  margin-top: 16px;
+}
+
+.register-page-link a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.3s;
+}
+
+.register-page-link a:hover {
+  opacity: 0.8;
+}
+
+.register-error-message {
+  color: #ff4d4f;
+  margin-bottom: 16px;
+  text-align: center;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: rgba(255, 77, 79, 0.1);
+}

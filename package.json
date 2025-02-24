@@ -1,5 +1,5 @@
 {
-  "name": "efflux-frontend",
+  "name": "efflux",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -38,6 +38,7 @@
     "ai": "^3.3.8",
     "axios": "^0.19.0",
     "class-variance-authority": "^0.7.0",
+    "classnames": "^2.5.1",
     "clsx": "^2.1.1",
     "core-js": "^3.38.0",
     "e2b": "^1.0.5",
@@ -45,6 +46,7 @@
     "next": "^14.2.8",
     "next-themes": "^0.3.0",
     "ollama-ai-provider": "^0.12.0",
+    "partial-json": "^0.1.7",
     "posthog-js": "^1.158.3",
     "prismjs": "^1.29.0",
     "react": "^18",

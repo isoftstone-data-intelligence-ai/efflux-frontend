@@ -26,9 +26,9 @@ export type LLMModelConfig = {
 }
 
 export function getModelClient(model: LLMModel, config: LLMModelConfig) {
-  const { id: modelNameString, providerId } = model
+  const { id: modelNameString } = model
   const { apiKey, baseURL } = config
-
+  var providerId = 'azure'
   const providerConfigs = {
     anthropic: () => createAnthropic({ apiKey, baseURL })(modelNameString),
     openai: () => createOpenAI({ apiKey, baseURL })(modelNameString),
@@ -75,7 +75,7 @@ export function getModelClient(model: LLMModel, config: LLMModelConfig) {
         baseURL: baseURL || 'https://api.x.ai/v1',
       })(modelNameString),
   }
-
+  
   const createClient =
     providerConfigs[providerId as keyof typeof providerConfigs]
 

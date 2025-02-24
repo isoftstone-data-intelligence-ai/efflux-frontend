@@ -36,6 +36,7 @@ export function NavBar({
   onSocialClick,
   onUndo,
   canUndo,
+  userInfo,
 }: {
   session: Session | null
   showLogin: () => void
@@ -49,7 +50,12 @@ export function NavBar({
 
   const { setTheme, theme } = useTheme()
 
-  var the = theme || window.localStorage.getItem('theme')
+  var the = theme
+
+  if (typeof window !== 'undefined') {
+    // 只有在浏览器环境中执行的代码
+    the = theme || window?.localStorage.getItem('theme')
+  }
 
   return (
     <nav className="w-full flex bg-background py-4">
@@ -75,7 +81,7 @@ export function NavBar({
         </Link> */}
       </div>
       <div className="flex items-center gap-1 md:gap-4">
-        <TooltipProvider>
+        {/* <TooltipProvider>
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
               <Button
@@ -89,8 +95,8 @@ export function NavBar({
             </TooltipTrigger>
             <TooltipContent>Undo</TooltipContent>
           </Tooltip>
-        </TooltipProvider>
-        <TooltipProvider>
+        </TooltipProvider> */}
+        {/* <TooltipProvider>
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
               <Button
@@ -104,7 +110,7 @@ export function NavBar({
             </TooltipTrigger>
             <TooltipContent>Clear chat</TooltipContent>
           </Tooltip>
-        </TooltipProvider>
+        </TooltipProvider> */}
         <TooltipProvider>
           <Tooltip delayDuration={0}>
             <TooltipTrigger asChild>
@@ -137,7 +143,7 @@ export function NavBar({
               <DropdownMenuLabel className="flex flex-col">
                 <span className="text-sm">My Account</span>
                 <span className="text-xs text-muted-foreground">
-                  {session.user.email}
+                  {userInfo.name}
                 </span>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
@@ -161,11 +167,11 @@ export function NavBar({
                 <TwitterLogoIcon className="mr-2 h-4 w-4 text-muted-foreground" />
                 Follow us on X
               </DropdownMenuItem>
-              <DropdownMenuSeparator />
+              <DropdownMenuSeparator /> */}
               <DropdownMenuItem onClick={signOut}>
                 <LogOut className="mr-2 h-4 w-4 text-muted-foreground" />
                 Sign out
-              </DropdownMenuItem> */}
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (

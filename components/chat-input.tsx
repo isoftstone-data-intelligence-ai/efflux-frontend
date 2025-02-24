@@ -22,6 +22,11 @@ export function ChatInput({
   files,
   handleFileChange,
   children,
+  toolsMsg,
+  isMcpSelected,
+  isArtifactsSelected,
+  onMcpClick,
+  onArtifactsClick,
 }: {
   retry: () => void
   isErrored: boolean
@@ -35,6 +40,11 @@ export function ChatInput({
   files: File[]
   handleFileChange: (change: SetStateAction<File[]>) => void
   children: React.ReactNode
+  toolsMsg?: string
+  isMcpSelected?: boolean
+  isArtifactsSelected?: boolean
+  onMcpClick?: () => void
+  onArtifactsClick?: () => void
 }) {
   function handleFileInput(e: React.ChangeEvent<HTMLInputElement>) {
     handleFileChange((prev) => [...prev, ...Array.from(e.target.files || [])])
@@ -82,6 +92,21 @@ export function ChatInput({
       onKeyDown={onEnter}
       className="mb-2 flex flex-col mt-auto bg-background"
     >
+      {
+        toolsMsg && <>
+         <div className="flex items-center gap-2 px-4 py-2 mb-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
+          <div className="flex-shrink-0 w-5 h-5 text-blue-500">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+            </svg>
+          </div>
+          <div className="flex-1 text-sm text-blue-700 dark:text-blue-300 break-words whitespace-pre-wrap overflow-auto max-h-24">
+            {toolsMsg}
+          </div>
+        </div>
+      </>
+      }
+     
       {isErrored && (
         <div
           className={`flex items-center p-1.5 text-sm font-medium mb-2 rounded-xl ${
@@ -99,7 +124,7 @@ export function ChatInput({
             className={`px-2 py-1 rounded-sm ${
               isRateLimited ? 'bg-orange-400/20' : 'bg-red-400/20'
             }`}
-            onClick={retry}
+            // onClick={retry}
           >
             Try again
           </button>
@@ -149,6 +174,35 @@ export function ChatInput({
                 <TooltipContent>Add attachments</TooltipContent>
               </Tooltip>
             </TooltipProvider>
+
+            <Button
+              type="button"
+              variant={isMcpSelected ? "default" : "outline"}
+              size="sm"
+              className={`rounded-full w-20 h-7 text-xs font-medium transition-colors ${
+                isMcpSelected 
+                  ? "bg-[#18181B] dark:bg-white text-white dark:text-[#18181B] hover:bg-[#18181B]/90 dark:hover:bg-white/90 border-[#18181B] dark:border-white" 
+                  : "bg-white dark:bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 border dark:border-gray-700"
+              }`}
+              onClick={onMcpClick}
+            >
+              Mcp
+            </Button>
+
+            <Button
+              type="button"
+              variant={isArtifactsSelected ? "default" : "outline"}
+              size="sm"
+              className={`rounded-full w-20 h-7 text-xs font-medium transition-colors ${
+                isArtifactsSelected 
+                  ? "bg-[#18181B] dark:bg-white text-white dark:text-[#18181B] hover:bg-[#18181B]/90 dark:hover:bg-white/90 border-[#18181B] dark:border-white" 
+                  : "bg-white dark:bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 border dark:border-gray-700"
+              }`}
+              onClick={onArtifactsClick}
+            >
+              Artifacts
+            </Button>
+
             {files.length > 0 && filePreview}
           </div>
           <div>
