@@ -102,7 +102,7 @@ export function ChatSettings({
             <DropdownMenuSeparator />
           </>
         )}
-        {baseURLConfigurable && (
+        {baseURLTitle && (
           <>
             <div className="flex flex-col gap-2 px-2 py-2">
               <Label htmlFor="baseURL">{baseURLTitle}</Label>

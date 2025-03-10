@@ -146,3 +146,22 @@ export const template_list = () => {
     method: 'get',
   });
 };
+
+
+// mcp应用列表
+export const getMcpList = (data) => {
+  return request({
+    url: `/mcp_app/page`,
+    method: 'get',
+    params: data,
+  });
+};
+
+
+// 回话详情
+export const getChatDetail = (data) => {
+  return request({
+    url: `/chat_window/detail/${data.id}`,
+    method: 'get',
+  });
+};

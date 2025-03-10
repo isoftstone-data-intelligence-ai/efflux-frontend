@@ -3,7 +3,7 @@
 import React from 'react'
 import * as Dialog from '@radix-ui/react-dialog'
 import './index.css'
-import { getChatList } from '@/lib/api'
+import { getChatList, getChatDetail } from '@/lib/api'
 
 let lastCallTime = 0;
 const THROTTLE_DELAY = 1000; // 3 seconds
@@ -37,7 +37,8 @@ export default class extends React.Component {
       }
 
       if(selectedItem){
-        this.props.setMessages(selectedItem.chat_messages)
+        this.getChatDetail(parseInt(selectedChat))
+        // this.props.setMessages(selectedItem.chat_messages)
       }
       
       this.setState(obj);
@@ -78,8 +79,19 @@ export default class extends React.Component {
     if (typeof window !== 'undefined') {
       window.localStorage.setItem('selectedChat', chatId)
     }
-    this.props.setMessages(obj.chat_messages)
+    this.getChatDetail(chatId)
+    // this.props.setMessages(obj.chat_messages)
   };
+
+  getChatDetail = async (chatId) => {
+    var rs = await getChatDetail({ id: chatId })
+    if (rs.data?.code == 200) {
+      var data = rs.data.data
+      this.props.setMessages(data.chat_messages)
+      console.log(data)
+    }
+  }
+
 
   render() {
     const { open, selectedChat, chats } = this.state;

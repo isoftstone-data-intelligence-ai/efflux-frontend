@@ -1,5 +1,7 @@
 // next.config.js
 module.exports = {
+  basePath: '/demo',
+  assetPrefix: '/demo/',
   eslint: {
     ignoreDuringBuilds: true, // 忽略构建时的 ESLint 错误
   },

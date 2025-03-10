@@ -9,8 +9,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # 运行安装指令
-RUN npm config set registry https://registry.npmmirror.com
-RUN npm install
+RUN npm config set registry https://registry.npmjs.org/
+RUN npm install  --force
 
 # 复制当前app目录文件到上面定义的目录WORKDIR中
 # Bundle app source

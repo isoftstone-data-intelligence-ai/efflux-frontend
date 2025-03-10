@@ -1,0 +1,183 @@
+.guide-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  animation: fadeIn 0.3s ease;
+}
+
+.guide-tooltip {
+  position: fixed;
+  padding: 16px 20px;
+  border-radius: 4px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+  z-index: 9999;
+  max-width: 400px;
+  animation: fadeIn 0.3s ease;
+  border: 2px solid transparent;
+}
+
+/* Light theme */
+.guide-tooltip.light {
+  background-color: white;
+  color: #18181B;
+  border-color: #e2e8f0;
+}
+
+/* Dark theme */
+.guide-tooltip.dark {
+  background-color: white;
+  color: #18181B;
+  border-color: #e2e8f0;
+}
+
+.guide-tooltip-arrow {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: white;
+  transform: rotate(45deg);
+  border: 2px solid #e2e8f0;
+  z-index: -1;
+}
+
+.guide-tooltip-arrow[data-position="top"] {
+  bottom: -7px;
+  left: 50%;
+  margin-left: -6px;
+  border-top: none;
+  border-left: none;
+}
+
+.guide-tooltip-arrow[data-position="bottom"] {
+  top: -7px;
+  left: 50%;
+  margin-left: -6px;
+  border-bottom: none;
+  border-right: none;
+}
+
+.guide-tooltip-arrow[data-position="left"] {
+  right: -7px;
+  top: 50%;
+  margin-top: -6px;
+  border-right: none;
+  border-top: none;
+}
+
+.guide-tooltip-arrow[data-position="right"] {
+  left: -7px;
+  top: 50%;
+  margin-top: -6px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.guide-tooltip-content {
+  font-size: 15px;
+  line-height: 1.6;
+  font-weight: 500;
+}
+
+.guide-tooltip-buttons {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 16px;
+  gap: 12px;
+}
+
+.guide-tooltip-button {
+  padding: 8px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 62px; /* 所有按钮宽度调整为 62px */
+  text-align: center;
+}
+
+/* Light theme buttons */
+.guide-tooltip.light .guide-tooltip-start {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.guide-tooltip.light .guide-tooltip-start:hover {
+  background-color: #2563eb;
+}
+
+.guide-tooltip.light .guide-tooltip-skip {
+  background: white;
+  border: 1px solid #dfdfdf; /* 灰色边框 */
+  color: #64748b;
+}
+
+.guide-tooltip.light .guide-tooltip-skip:hover {
+  background-color: #f1f5f9;
+}
+
+.guide-tooltip.light .guide-tooltip-next, .guide-tooltip-ok {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.guide-tooltip.light .guide-tooltip-next:hover, guide-tooltip-ok:hover {
+  background-color: #2563eb;
+}
+
+/* Dark theme buttons */
+.guide-tooltip.dark .guide-tooltip-start {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.guide-tooltip.dark .guide-tooltip-start:hover {
+  background-color: #2563eb;
+}
+
+.guide-tooltip.dark .guide-tooltip-skip {
+  background: white;
+  border: 1px solid #64748b;
+  color: #64748b;
+}
+
+.guide-tooltip.dark .guide-tooltip-skip:hover {
+  background-color: #f1f5f9;
+}
+
+.guide-tooltip.dark .guide-tooltip-next {
+  background-color: #3b82f6;
+  color: white;
+  border: none;
+}
+
+.guide-tooltip.dark .guide-tooltip-next:hover {
+  background-color: #2563eb;
+}
+
+.welcome-text {
+  color: #666;
+  .title {
+    font-size: 19px;
+    color: #000;
+    margin-bottom: 10px;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

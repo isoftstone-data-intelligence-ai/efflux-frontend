@@ -62,7 +62,7 @@ export function NavBar({
       <div className="flex flex-1 items-center">
         <Image
           className="flex"
-          src={the == 'dark' ? `/thirdparty/logo.png`:`/thirdparty/logo2.png`}
+          src={the == 'dark' ? `/demo/thirdparty/logo.png`:`/demo/thirdparty/logo2.png`}
           width={120}
           height={24}
         />

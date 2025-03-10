@@ -24,6 +24,8 @@ export function Preview({
   fragment,
   result,
   onClose,
+  sandbox,
+  itemIndex,
 }: {
   apiKey: string | undefined
   selectedTab: 'code' | 'fragment'
@@ -33,6 +35,8 @@ export function Preview({
   fragment?: DeepPartial<FragmentSchema>
   result?: ExecutionResult
   onClose: () => void
+  sandbox?: () => void
+  itemIndex: number
 }) {
   if (!fragment) {
     return null
@@ -44,9 +48,14 @@ export function Preview({
     <div className="absolute md:relative top-0 left-0 shadow-2xl md:rounded-tl-3xl md:rounded-bl-3xl md:border-l md:border-y bg-popover h-full w-full overflow-auto">
       <Tabs
         value={selectedTab}
-        onValueChange={(value) =>
-          onSelectedTabChange(value as 'code' | 'fragment')
-        }
+        onValueChange={(value: string) => {
+          const newValue = value as 'code' | 'fragment';
+          // Add your custom handling here
+          if (newValue === 'fragment' && !result) {
+            sandbox(fragment)
+          }
+          onSelectedTabChange(newValue);
+        }}
         className="h-full flex flex-col items-start justify-start"
       >
         <div className="w-full p-2 grid grid-cols-3 items-center border-b">
@@ -66,7 +75,9 @@ export function Preview({
             </Tooltip>
           </TooltipProvider>
           <div className="flex justify-center">
-            <TabsList className="px-1 py-0 border h-8">
+            <TabsList
+              className="px-1 py-0 border h-8"
+            >
               <TabsTrigger
                 className="font-normal text-xs py-1 px-2 gap-1 flex items-center"
                 value="code"
@@ -80,7 +91,7 @@ export function Preview({
                 Code
               </TabsTrigger>
               <TabsTrigger
-                disabled={!result}
+                // disabled={!result}
                 className="font-normal text-xs py-1 px-2 gap-1 flex items-center"
                 value="fragment"
               >

@@ -1,0 +1,40 @@
+.shop-icon {
+  padding: 8px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.shop-icon:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  transform: translateY(-1px);
+}
+
+.shop-icon:hover svg {
+  transform: scale(1.1);
+}
+
+.shop-icon:active {
+  transform: translateY(0px);
+}
+
+.shop-icon svg {
+  transition: transform 0.2s ease;
+}
+
+.mcp-shop-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 4px;
+}
+
+.help-icon svg {
+  transition: transform 0.2s ease;
+}
+
+.help-icon:hover svg {
+  transform: scale(1.1);
+}

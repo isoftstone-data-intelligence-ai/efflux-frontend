@@ -6,8 +6,9 @@ import {
   TooltipTrigger,
 } from '@/components/ui/tooltip'
 import { ArrowUp, Paperclip, Square, X } from 'lucide-react'
-import { SetStateAction, useMemo } from 'react'
+import { SetStateAction, useMemo, useRef } from 'react'
 import TextareaAutosize from 'react-textarea-autosize'
+import Prompt from './Prompt'
 
 export function ChatInput({
   retry,
@@ -46,6 +47,8 @@ export function ChatInput({
   onMcpClick?: () => void
   onArtifactsClick?: () => void
 }) {
+  const inputRef = useRef<HTMLTextAreaElement>(null)
+
   function handleFileInput(e: React.ChangeEvent<HTMLInputElement>) {
     handleFileChange((prev) => [...prev, ...Array.from(e.target.files || [])])
   }
@@ -86,12 +89,50 @@ export function ChatInput({
     }
   }
 
+  var placeholder = 'Describe your app...'
+  if (isMcpSelected) placeholder = 'Ask Efflux a question...'
+
   return (
     <form
+      id="chat-form"
       onSubmit={handleSubmit}
       onKeyDown={onEnter}
       className="mb-2 flex flex-col mt-auto bg-background"
     >
+
+      <div>
+        {(()=>{
+          var prompts = [];
+          if(isArtifactsSelected){
+            prompts = [
+              {
+                title:'Login Page',
+                value:'Create a modern, responsive login page for a fictional SaaS company.',
+              },
+              {
+                title:'Clone Screenshot',
+                value:'Please recreate the UI shown in the attached screenshot as accurately as possible.',
+              },
+            ];
+          }
+
+          return (
+            <Prompt 
+              prompts={prompts}
+              theme="light"
+              onSelect={(promptText) => {
+                if (inputRef.current) {
+                  inputRef.current.value = promptText;
+                }
+                handleInputChange({ target: { value: promptText } } as any);
+                setTimeout(() => {
+                  document.getElementById('sendMsgButton')?.click();
+                }, 100);
+              }}
+            />
+          )
+        })()}
+      </div>
       {
         toolsMsg && <>
          <div className="flex items-center gap-2 px-4 py-2 mb-2 bg-blue-50 dark:bg-blue-900/20 rounded-lg border border-blue-100 dark:border-blue-800">
@@ -138,10 +179,11 @@ export function ChatInput({
           maxRows={5}
           className="text-normal px-3 resize-none ring-0 bg-inherit w-full m-0 outline-none"
           required={true}
-          placeholder="Describe your app..."
+          placeholder={placeholder}
           disabled={isErrored}
           value={input}
           onChange={handleInputChange}
+          ref={inputRef}
         />
         <div className="flex p-3 gap-2 items-center">
           <input
@@ -176,17 +218,18 @@ export function ChatInput({
             </TooltipProvider>
 
             <Button
+              id='MCP'
               type="button"
               variant={isMcpSelected ? "default" : "outline"}
               size="sm"
-              className={`rounded-full w-20 h-7 text-xs font-medium transition-colors ${
+              className={`mcp-button rounded-full w-20 h-7 text-xs font-medium transition-colors ${
                 isMcpSelected 
                   ? "bg-[#18181B] dark:bg-white text-white dark:text-[#18181B] hover:bg-[#18181B]/90 dark:hover:bg-white/90 border-[#18181B] dark:border-white" 
                   : "bg-white dark:bg-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800 border dark:border-gray-700"
               }`}
               onClick={onMcpClick}
             >
-              Mcp
+              MCP
             </Button>
 
             <Button
@@ -216,6 +259,7 @@ export function ChatInput({
                       size="icon"
                       type="submit"
                       className="rounded-xl h-10 w-10"
+                      id='sendMsgButton'
                     >
                       <ArrowUp className="h-5 w-5" />
                     </Button>

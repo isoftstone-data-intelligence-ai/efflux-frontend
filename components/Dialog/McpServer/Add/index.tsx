@@ -10,6 +10,7 @@ export default class extends Component {
     open: false,
     id: '',
     type: 'add',
+    shopData:{},
 
     serverName: '',
     command: '',
@@ -26,12 +27,34 @@ export default class extends Component {
       open: true,
       id: data.id,
       type: data.type,
+      shopData: data.shopData||{},
     }, () => {
+
+      // 添加商店参数
+      if (data.shop) {
+        this.shopAdd()
+        return
+      }
+
       if (data.type != 'add') {
         this.getDetails()
       }
+      
     })
   }
+
+  shopAdd = ()=>{
+    const { shopData } = this.state
+    var data = shopData
+    var env  = data.env || {}
+    this.setState({
+      serverName: data.server_name,
+      command: data.command,
+      arguments: data.args.join(' '),
+      env: Object.keys(env).map(key => `${key}=${env[key]}`).join('\n'),
+    })
+  }
+
 
   onClose = () => {
     this.setState({

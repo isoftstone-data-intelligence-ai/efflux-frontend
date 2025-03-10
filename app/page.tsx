@@ -28,6 +28,8 @@ import { useRouter } from 'next/navigation';
 import { toast } from '@/components/ui/use-toast'
 import { toPrompt } from '@/lib/prompt'
 import { parse } from "partial-json";
+import UserGuide from "./UserGuide";
+import './page.css'
 
 var func = () => { }
 
@@ -72,7 +74,28 @@ export default function Home() {
   const [userConfigs, setUserConfigs] = useState([])
   const [llmSettingsOpen, setLlmSettingsOpen] = useState(false);
   const [templatesList, setTemplatesList] = useState([])
+
+  const [currentGuideStep, setCurrentGuideStep] = useState(1); // 新增状态管理当前步骤
+
+  const handleStepChange = (step: number) => {
+    const hasSeenGuide = localStorage.getItem('hasSeenGuide');
+    if (!hasSeenGuide) {
+      setCurrentGuideStep(step); // 更新当前步骤
+      // 根据步骤更新 isMcpSelected 和 isArtifactsSelected 的状态
+      if (step >= 1 && step <= 4) {
+        setIsMcpSelected(false);
+        setIsArtifactsSelected(true);
+      } else if (step >= 5 && step <= 7) {
+        setIsMcpSelected(true);
+        setIsArtifactsSelected(false);
+      }
+    }  
+    
+  };
+
   const [codeTemplateMap, setCodeTemplateMap] = useState([])
+  const [itemIndex, setItemIndex] = useState(0);
+
 
   const { setTheme, theme } = useTheme()
   var the = theme
@@ -114,7 +137,7 @@ export default function Home() {
           template: fragment?.template,
         })
 
-        const response = await fetch('/api/sandbox', {
+        const response = await fetch('/demo/api/sandbox', {
           method: 'POST',
           body: JSON.stringify({
             fragment,
@@ -187,7 +210,6 @@ export default function Home() {
     if (error) stop()
   }, [error])
 
-
   const checkAuthAndFetchUser = async () => {
     if (typeof window !== 'undefined') {
       const token = localStorage.getItem('authToken');
@@ -234,6 +256,11 @@ export default function Home() {
   }
 
   useEffect(() => {
+    const hasSeenGuide = localStorage.getItem('hasSeenGuide');
+    if (!hasSeenGuide) {
+      setIsMcpSelected(false);
+      setIsArtifactsSelected(true);
+    }
     checkAuthAndFetchUser();
     getConfigsData()
     getTemplatesData()
@@ -257,7 +284,7 @@ export default function Home() {
     if (!current) {
       toast({
         title: "Error",
-        description: "Set LLM Settings first"
+        description: "Please configure your LLM settings."
       })
       setLlmSettingsOpen(true)
       return
@@ -480,6 +507,12 @@ export default function Home() {
       if (!isTools) {
         setToolsMsg('')
       }
+
+      // 处理toolsMsg
+      setTimeout(() => {
+        setToolsMsg('')
+      }, 2000)
+
       if (!reqData.chat_id) {
         var sidebar = sidebarRef.current
         sidebar.getList((data) => {
@@ -489,7 +522,7 @@ export default function Home() {
         })
       }
 
-     
+      
 
       // 处理code逻辑
       if (reqData.code == true) {
@@ -499,7 +532,7 @@ export default function Home() {
           template: fragment?.template,
         })
 
-        const response = await fetch('/api/sandbox', {
+        const response = await fetch('/demo/api/sandbox', {
           method: 'POST',
           body: JSON.stringify({
             fragment,
@@ -524,6 +557,32 @@ export default function Home() {
       setAzureLoading(false)
     }
   };
+
+  async function sandbox(fragment = {},index) {
+    const response = await fetch('/demo/api/sandbox', {
+      method: 'POST',
+      body: JSON.stringify({
+        fragment,
+        userID: session?.user?.id,
+        apiKey,
+      }),
+    })
+
+    const result = await response.json()
+    console.log('result', result)
+    
+    var ind = itemIndex
+    if(index != undefined){
+      ind = index
+    }
+
+    setResult(result)
+    setCurrentPreview({ fragment, result })
+    setCurrentTab('fragment')
+    setIsPreviewLoading(false)
+    setMessage({ result }, ind)
+  }
+
 
   function retry() {
     submit({
@@ -584,9 +643,12 @@ export default function Home() {
   function setCurrentPreview(preview: {
     fragment: DeepPartial<FragmentSchema> | undefined
     result: ExecutionResult | undefined
+    itemIndex: number
   }) {
     setFragment(preview.fragment)
     setResult(preview.result)
+    setItemIndex(preview.itemIndex)
+
   }
 
   function handleUndo() {
@@ -605,7 +667,7 @@ export default function Home() {
 
   var tempItem = templatesList.find((item: any) => item.id == languageModel.model)
 
-
+  // console.log(messages,222222)
   return (
     <>
       {isLoading ? (
@@ -656,6 +718,9 @@ export default function Home() {
                 messages={messages}
                 isLoading={isSubmitting || azureLoading}
                 setCurrentPreview={setCurrentPreview}
+                sandbox={sandbox}
+                currentTab={currentTab}
+                userInfo={userInfo}
               />
               <ChatInput
                 retry={retry}
@@ -698,6 +763,7 @@ export default function Home() {
                   codeTemplateMap={codeTemplateMap}
                   isMcpSelected={isMcpSelected}
                   isArtifactsSelected={isArtifactsSelected}
+                  currentGuideStep={currentGuideStep}
                 />
                 {
                   isMcpSelected && <div>
@@ -706,7 +772,7 @@ export default function Home() {
                 }
 
                 {
-                  true && <div id="llm-settings">
+                  true && <div id="llm-settings" className='llm-settings-button'>
                     <ChatSettings
                       languageModel={languageModel}
                       onLanguageModelChange={handleLanguageModelChange}
@@ -736,8 +802,18 @@ export default function Home() {
               fragment={fragment}
               result={result as ExecutionResult}
               onClose={() => setFragment(undefined)}
+              sandbox={sandbox}
+              itemIndex={itemIndex}
             />
           </div>
+          {
+            templatesList.length > 0 && (
+              <div className="flex items-center gap-2">
+                <UserGuide className="user-guide" onStepChange={handleStepChange} />
+              </div>
+            )
+          }
+          
         </main>
       )}
     </>

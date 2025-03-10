@@ -11,7 +11,7 @@ import { getServerList, getTemplates,getConfigs } from '@/lib/api'
 import { LLMModel, LLMModelConfig } from '@/lib/models'
 import { TemplateId, Templates } from '@/lib/templates'
 import 'core-js/features/object/group-by.js'
-import { Sparkles } from 'lucide-react'
+import { Server, Sparkles } from 'lucide-react'
 import Image from 'next/image'
 import React, { useState, useEffect } from 'react'
 
@@ -58,7 +58,7 @@ export function ChatPicker({
   }, [])
 
   var tools = [
-    { label: 'Mcp', value: 'mcp' },
+    { label: 'MCP', value: 'mcp' },
     { label: 'Artifacts', value: 'code' },
   ]
 
@@ -87,7 +87,7 @@ export function ChatPicker({
           </SelectContent>
         </Select>
       </div> */}
-      <div className="flex flex-col" style={{ display: toolsValue == 'mcp' ? 'block' : 'block' }}>
+      <div className="flex flex-col" id='languageModel' style={{ display: toolsValue == 'mcp' ? 'block' : 'block' }}>
         <Select
           name="languageModel"
           defaultValue={languageModel.model}
@@ -107,7 +107,7 @@ export function ChatPicker({
                     <div className="flex items-center space-x-2">
                       <Image
                         className="flex"
-                        src={`/thirdparty/logos/${'openai'}.svg`}
+                        src={`/demo/thirdparty/logos/${'openai'}.svg`}
                         alt={model.provider}
                         width={14}
                         height={14}
@@ -140,7 +140,7 @@ export function ChatPicker({
                     <div className="flex items-center space-x-2">
                       <Image
                         className="flex"
-                        src={`/thirdparty/logos/${model.providerId}.svg`}
+                        src={`/demo/thirdparty/logos/${model.providerId}.svg`}
                         alt={model.provider}
                         width={14}
                         height={14}
@@ -156,7 +156,7 @@ export function ChatPicker({
       </div>
       {
         isArtifactsSelected && <>
-          <div className="flex flex-col">
+          <div className="flex flex-col" id='auto'>
             <Select
               name="template"
               defaultValue={selectedTemplate}
@@ -183,7 +183,7 @@ export function ChatPicker({
                       <div className="flex items-center space-x-2">
                         <Image
                           className="flex"
-                          src={`/thirdparty/templates/${templateId}.svg`}
+                          src={`/demo/thirdparty/templates/${templateId}.svg`}
                           alt={templateId}
                           width={14}
                           height={14}
@@ -201,7 +201,8 @@ export function ChatPicker({
       
       {
         isMcpSelected && <>
-          <div className="flex flex-col">
+          <div className="flex flex-col server-select" id='server_name'>
+            
             <Select
               name="server_name"
               defaultValue={serverValue}
@@ -213,11 +214,14 @@ export function ChatPicker({
               }}
             >
               <SelectTrigger className="whitespace-nowrap border-none shadow-none focus:ring-0 px-0 py-0 h-6 text-xs">
-                <SelectValue placeholder="Select a persona" />
+                <Server className="w-4 h-4" style={{marginRight: '8px',color: '#a1a1aa'}}/>
+              <SelectValue placeholder="Select a persona" />
               </SelectTrigger>
               <SelectContent side="top">
                 <SelectGroup>
-                  <SelectLabel>Servers</SelectLabel>
+                  <SelectLabel className="flex items-center gap-2">
+                    Servers
+                  </SelectLabel>
                   <SelectItem value="none">
                     <div className="flex items-center space-x-2">
                       <span>none</span>
