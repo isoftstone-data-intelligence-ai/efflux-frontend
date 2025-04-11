@@ -55,7 +55,7 @@ class ChatSettings extends React.Component {
     };
 
     var func = addConfigs;
-    if (current.id) {
+    if (current?.id) {
       func = updateConfigs;
       reqData.id = current.id;
     }
