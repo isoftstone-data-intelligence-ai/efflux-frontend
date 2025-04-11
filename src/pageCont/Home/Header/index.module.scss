@@ -1,0 +1,82 @@
+@import '@/styles/utils.scss';
+
+
+.logo{
+    @apply flex;
+    margin-right: 0px;
+    cursor: pointer;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    height: 64px;
+    border-bottom: 1px solid #F3F3F3;
+    justify-content: space-between;
+    background-color: #fff;
+    @apply bg-white;
+    :global(.dark) & {
+        border-bottom-color: rgba(255, 255, 255, 0.1);
+        background-color: #18181B;
+      }
+}
+
+.button{
+    @apply flex items-center gap-2 px-3 py-1.5 text-sm text-white bg-blue-600 rounded-md hover:bg-blue-700;
+    background: linear-gradient( 320deg, #5200B3 0%, #002077 100%);
+    border-radius: 8px;
+    // width: 157px;
+    padding-right: 16px;
+    height: 40px;
+}
+
+
+.settingsButton {
+    all: unset;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    transition: all 0.2s ease;
+  
+    &:hover {
+      background-color: #F4F4F5;
+    }
+  
+    :global(.dark) & {
+      color: #A1A1AA;
+  
+      &:hover {
+        background-color: #3F3F46;
+      }
+    }
+}
+
+.settingsButton2 {
+    all: unset;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #000;
+    transition: all 0.2s ease;
+    font-size: 16px;
+  
+    &:hover {
+      background-color: #F4F4F5;
+    }
+  
+    :global(.dark) & {
+      color: #fff;
+  
+      &:hover {
+        background-color: #3F3F46;
+      }
+    }
+}

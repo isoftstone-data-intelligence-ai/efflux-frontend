@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reveal.js 幻灯片</title>
+    <!-- 核心样式文件 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <!-- 主题样式 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/white.min.css">
+    <!-- 代码高亮 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/styles/monokai.min.css">
+    <style>
+        .reveal .slides {
+            text-align: left;
+        }
+        .reveal h1, .reveal h2 {
+            margin-bottom: 30px;
+        }
+        .reveal section {
+            height: 100%;
+        }
+        .reveal ul, .reveal ol {
+            display: block;
+        }
+        .reveal pre {
+            width: 100%;
+            margin: 20px auto;
+        }
+        .download-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            padding: 10px 20px;
+            background: #2196F3;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background: #1976D2;
+        }
+        .download-btn:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            <!-- 标题页 -->
+            <section>
+                <h1>演示文稿标题</h1>
+                <h3>副标题</h3>
+                <p>
+                    <small>作者 / 日期</small>
+                </p>
+            </section>
+
+            <!-- 目录页 -->
+            <section>
+                <h2>目录</h2>
+                <ul>
+                    <li>第一部分：介绍</li>
+                    <li>第二部分：主要内容</li>
+                    <li>第三部分：总结</li>
+                </ul>
+            </section>
+
+            <!-- 内容页 - 带有图片示例 -->
+            <section>
+                <h2>图片展示</h2>
+                <div style="display: flex; justify-content: center; align-items: center;">
+                    <img data-src="https://picsum.photos/800/400" alt="示例图片">
+                </div>
+                <p>这是一个图片展示的示例</p>
+            </section>
+
+            <!-- 代码展示页 -->
+            <section>
+                <h2>代码示例</h2>
+                <pre><code class="javascript">
+function example() {
+    console.log("Hello World!");
+    return true;
+}
+                </code></pre>
+            </section>
+
+            <!-- 列表展示页 -->
+            <section>
+                <h2>列表展示</h2>
+                <ul>
+                    <li class="fragment">第一点</li>
+                    <li class="fragment">第二点</li>
+                    <li class="fragment">第三点</li>
+                </ul>
+            </section>
+
+            <!-- 总结页 -->
+            <section>
+                <h2>总结</h2>
+                <ol>
+                    <li>主要观点一</li>
+                    <li>主要观点二</li>
+                    <li>主要观点三</li>
+                </ol>
+            </section>
+        </div>
+    </div>
+
+    <button id="download" class="download-btn">下载 PDF</button>
+
+    <!-- 核心 JS 文件 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <!-- 代码高亮 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.3.1/highlight.min.js"></script>
+    <!-- Reveal.js 插件 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <!-- PDF 导出 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+    <script>
+        // 初始化代码高亮
+        hljs.highlightAll();
+
+        // 初始化 Reveal.js
+        Reveal.initialize({
+            controls: true,
+            progress: true,
+            center: false,
+            hash: true,
+            transition: 'slide',
+            // 更多配置...
+            plugins: [RevealHighlight]
+        });
+
+        // PDF 导出功能
+        document.getElementById('download').addEventListener('click', async () => {
+            const downloadBtn = document.getElementById('download');
+            downloadBtn.disabled = true;
+            downloadBtn.textContent = '正在导出...';
+
+            try {
+                const slides = document.querySelectorAll('.reveal .slides section');
+                const pdf = new jspdf.jsPDF('landscape', 'pt', 'a4');
+                
+                const scale = 1.5;
+                const options = {
+                    scale: scale,
+                    useCORS: true,
+                    logging: false,
+                    allowTaint: true,
+                    backgroundColor: '#ffffff'
+                };
+
+                for (let i = 0; i < slides.length; i++) {
+                    downloadBtn.textContent = `正在导出 ${i + 1}/${slides.length}`;
+                    
+                    Reveal.slide(i);
+                    await new Promise(resolve => setTimeout(resolve, 300));
+
+                    const canvas = await html2canvas(slides[i], options);
+                    const imgData = canvas.toDataURL('image/jpeg', 0.8);
+                    
+                    if (i > 0) {
+                        pdf.addPage();
+                    }
+
+                    const pdfWidth = pdf.internal.pageSize.getWidth();
+                    const pdfHeight = pdf.internal.pageSize.getHeight();
+                    pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+                }
+
+                pdf.save('presentation.pdf');
+            } catch (error) {
+                console.error('PDF导出错误:', error);
+                alert('PDF导出失败，请重试');
+            } finally {
+                downloadBtn.disabled = false;
+                downloadBtn.textContent = '下载 PDF';
+            }
+        });
+    </script>
+</body>
+</html>

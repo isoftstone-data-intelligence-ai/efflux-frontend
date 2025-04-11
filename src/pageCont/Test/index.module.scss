@@ -1,0 +1,7 @@
+@import '@/styles/utils.scss';
+
+.color{
+    font-size:24px;
+    color:var(--primary-color);
+    @apply bg-blue-500 text-white p-4 rounded;
+}

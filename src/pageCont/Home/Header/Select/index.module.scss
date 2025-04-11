@@ -1,0 +1,251 @@
+@import '@/styles/utils.scss';
+
+.trigger {
+  all: unset;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 14px;
+  gap: 8px;
+  background-color: transparent;
+  color: #18181B;
+  min-width: 180px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #F4F4F5;
+  }
+
+  &[data-state='open'] {
+    background-color: #F4F4F5;
+  }
+
+  :global(.dark) & {
+    color: #fff;
+
+    &:hover {
+      background-color: #3F3F46;
+    }
+
+    &[data-state='open'] {
+      background-color: #3F3F46;
+    }
+  }
+}
+
+.triggerRight {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.checkIcon {
+  color: #71717A;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+
+  [data-state='checked'] & {
+    opacity: 1;
+  }
+
+  .trigger[data-state='checked'] & {
+    opacity: 1;
+  }
+
+  :global(.dark) & {
+    color: #A1A1AA;
+  }
+}
+
+.selectIcon {
+  transition: transform 0.2s ease;
+  color: #71717A;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :global(.dark) & {
+    color: #A1A1AA;
+  }
+}
+
+.trigger[data-state='open'] {
+  .selectIcon {
+    transform: rotate(180deg);
+  }
+}
+
+.triggerContent {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1;
+}
+
+.content {
+  overflow: hidden;
+  background-color: white;
+  border-radius: 6px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  animation: slideIn 0.2s ease-out;
+  width: 400px;
+  border: 1px solid #E4E4E7;
+  padding: 8px;
+
+  :global(.dark) & {
+    background-color: #27272A;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    border-color: #3F3F46;
+  }
+}
+
+.modelRow {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.item {
+  all: unset;
+  flex: 1;
+  font-size: 14px;
+  color: #18181B;
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  position: relative;
+  user-select: none;
+  gap: 8px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  border-radius: 8px;
+  min-width: 0;
+  border: 1px solid #E4E4E7;
+
+  &:hover {
+    background-color: #F4F4F5;
+  }
+
+  &[data-highlighted] {
+    background-color: #F4F4F5;
+    outline: none;
+  }
+
+  &[data-state='checked'] {
+    background-color: #F4F4F5;
+
+    .itemCheckIcon {
+      opacity: 1;
+    }
+  }
+
+  :global(.dark) & {
+    color: #fff;
+    border-color: #3F3F46;
+
+    &:hover {
+      background-color: #3F3F46;
+    }
+
+    &[data-highlighted] {
+      background-color: #3F3F46;
+    }
+
+    &[data-state='checked'] {
+      background-color: #3F3F46;
+    }
+  }
+}
+
+.itemCheckIcon {
+  color: #71717A;
+  opacity: 0;
+  margin-left: auto;
+  transition: opacity 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  :global(.dark) & {
+    color: #A1A1AA;
+  }
+}
+
+.modelIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+}
+
+.modelInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 1;
+}
+
+.modelName {
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.modelVersion {
+  font-size: 12px;
+  color: #71717A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.25;
+
+  :global(.dark) & {
+    color: #A1A1AA;
+  }
+}
+
+.itemIndicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.container{
+    margin-left: 124px;
+    display: flex;
+    align-items: center;
+}

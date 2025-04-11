@@ -1,0 +1,249 @@
+@import '@/styles/utils.scss';
+
+.langSelect {
+  position: relative;
+  cursor: pointer;
+  user-select: none;
+
+  .trigger {
+    all: unset;
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    gap: 8px;
+    background-color: transparent;
+    color: #18181B;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      background-color: #F4F4F5;
+    }
+
+    &[data-state='open'] {
+      background-color: #F4F4F5;
+    }
+
+    :global(.dark) & {
+      color: #fff;
+
+      &:hover, &[data-state='open'] {
+        background-color: #3F3F46;
+      }
+    }
+
+    i {
+      color: #71717A;
+      transition: color 0.2s ease;
+
+      :global(.dark) & {
+        color: #A1A1AA;
+      }
+    }
+  }
+
+  .triggerContent {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    min-width: 0;
+    flex: 1;
+  }
+
+  .selectIcon {
+    color: #71717A;
+    transition: transform 0.2s ease;
+    width: 16px;
+    height: 16px;
+
+    [data-state='open'] & {
+      transform: rotate(180deg);
+    }
+
+    :global(.dark) & {
+      color: #A1A1AA;
+    }
+  }
+
+  .content {
+    min-width: 120px;
+    background-color: white;
+    border-radius: 6px;
+    border: 1px solid #E4E4E7;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    animation-duration: 400ms;
+    animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, opacity;
+    transform-origin: var(--radix-select-content-transform-origin);
+    animation-name: scaleIn;
+
+    &[data-state='open'] {
+      animation-name: scaleIn;
+    }
+
+    &[data-state='closed'] {
+      animation-name: scaleOut;
+    }
+
+    :global(.dark) & {
+      background-color: #27272A;
+      border-color: #3F3F46;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    }
+  }
+
+  .item {
+    font-size: 14px;
+    color: #18181B;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 36px;
+    padding: 0 8px;
+    position: relative;
+    user-select: none;
+    outline: none;
+    cursor: pointer;
+
+    &[data-highlighted] {
+      background-color: #F4F4F5;
+      color: #18181B;
+    }
+
+    &[data-state='checked'] {
+      color: #2563EB;
+
+      .checkIcon {
+        opacity: 1;
+      }
+    }
+
+    :global(.dark) & {
+      color: #fff;
+
+      &[data-highlighted] {
+        background-color: #3F3F46;
+        color: #fff;
+      }
+
+      &[data-state='checked'] {
+        color: #60A5FA;
+      }
+    }
+  }
+
+  .checkIcon {
+    opacity: 0;
+    color: currentColor;
+    width: 16px;
+    height: 16px;
+    transition: opacity 0.2s ease;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes scaleOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+
+.personaTrigger {
+  all: unset;
+  cursor: pointer;
+  border-radius: 6px;
+
+  transition: background-color 0.2s ease;
+
+  &:hover, &[data-state='open'] {
+    background-color: #F4F4F5;
+    
+    :global(.dark) & {
+      background-color: #27272A;
+    }
+  }
+}
+
+.personaButton {
+  min-width: 90px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #000;
+  border-radius: 8px;
+
+  :global(.dark) & {
+    color: #fff;
+  }
+}
+
+.selectContent {
+  min-width: 120px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: slideUpAndFade 0.2s ease;
+  
+  :global(.dark) & {
+    background-color: #18181B;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.selectItem {
+  all: unset;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #18181B;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  position: relative;
+
+  &[data-highlighted] {
+    background-color: #F4F4F5;
+    outline: none;
+  }
+
+  :global(.dark) & {
+    color: #FAFAFA;
+
+    &[data-highlighted] {
+      background-color: #27272A;
+    }
+  }
+}
+
+.itemText{
+  display: flex;
+  align-items: center;
+
+}

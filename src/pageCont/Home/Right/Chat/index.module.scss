@@ -1,0 +1,111 @@
+@import '@/styles/utils.scss';
+
+.container {
+  flex: 1;
+  width: 100%;
+  position: relative;
+  font-size: 16px;
+
+  .compCont {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+    // padding: 20px 40px;
+  }
+
+  table {
+    width: 100%;
+    font-size: 9px;
+    border-collapse: collapse;
+    margin: 8px 0;
+  }
+  
+  th, td {
+    border: 1px solid var(--theme-border);
+    padding: 4px 6px;
+    text-align: left;
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  
+  th {
+    background-color: var(--theme-surface-variant);
+  }
+
+  :global {
+    #chat-container {
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      // gap: 24px;
+    }
+  
+    .msgByUse {
+      align-self: flex-end;
+      margin: 8px 0;
+    }
+  
+    .welcome-message {
+      text-align: center;
+      padding: 40px 0;
+      color: #71717A;
+    }
+  
+    .text-muted-foreground {
+      color: #71717A;
+    }
+  
+    .dark {
+      .text-muted-foreground {
+        color: #A1A1AA;
+      }
+    }
+  }
+}
+
+
+.msgItemUser{
+  font-size: 16px;
+  color: #000;
+  background: #F5F5F5;
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-weight: 500;
+
+  :global(.dark) & {
+    color: #fff;
+    background: #3a3a3e;
+  }
+}
+
+.msgItemAi{
+  @apply text-accent-foreground dark:text-muted-foreground py-4 gap-4 w-full;
+  line-height: 1.7em;
+}
+
+.codeIcon{
+  @apply rounded-[0.5rem] w-10 h-10 bg-black/5 dark:bg-white/5 self-stretch flex items-center justify-center;
+  background: #DAE3F7;
+  border-radius: 6px;
+  color: #003A9B;
+
+  :global(.dark) & {
+    color: #fff;
+    background: #3a3a3e;
+  }
+}
+
+.markdownBody{
+  font-size: 14px;
+  background-color: transparent !important;
+  :global{
+    pre{
+      background-color:transparent !important;
+    }
+  }
+}

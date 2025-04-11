@@ -1,0 +1,402 @@
+@import '@/styles/utils.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+
+  :global(.dark) & {
+    background: #18181B;
+  }
+}
+
+.chatInput {
+  margin-top: 6px;
+  margin-bottom: 6px;
+}
+
+.tabs {
+  display: inline-flex;
+  background: #EAEDF0;
+  border-radius: 6px;
+  padding: 4px;
+  gap: 4px;
+
+  :global(.dark) & {
+    background: #27272A;
+  }
+}
+
+.tab {
+  all: unset;
+  padding: 5px 20px;
+  border-radius: 6px;
+  color: #71717A;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  position: relative;
+  white-space: nowrap;
+  min-width: 70px;
+  text-align: center;
+  user-select: none;
+  
+  &[data-state='active'] {
+    color: #fff;
+    background: #161616;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  :global(.dark) & {
+    color: #A1A1AA;
+
+    &[data-state='active'] {
+      color: #18181B;
+      background: #E4E4E7;
+    }
+  }
+}
+
+.inputWrapper {
+  width: 100%;
+  gap: 12px;
+  align-items: flex-end;
+  position: relative;
+  background: #FFFFFF;
+  box-shadow: 0px 5px 10px 0px rgba(223,226,233,0.5);
+  border-radius: 16px;
+  border: 1px solid #E3E3E3;
+  padding: 16px 20px;
+
+  :global(.dark) & {
+    background: transparent;
+    border-color: #3F3F46;
+    color: #fff;
+    box-shadow: none;
+  }
+
+  .options {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 20px;
+
+  
+  }
+}
+
+.input {
+  width: 100%;
+  font-size: 16px;
+  line-height: 1.5;
+  resize: none;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #18181B;
+  min-height: 24px;
+  max-height: 200px;
+
+  &::placeholder {
+    color: #B0B0B0;
+  }
+
+  :global(.dark) & {
+    color: #fff;
+
+    &::placeholder {
+      color: #71717A;
+    }
+  }
+}
+
+.personaTrigger {
+  all: unset;
+  cursor: pointer;
+  border-radius: 6px;
+
+  transition: background-color 0.2s ease;
+
+  &:hover, &[data-state='open'] {
+    background-color: #F4F4F5;
+    
+    :global(.dark) & {
+      background-color: #27272A;
+    }
+  }
+}
+
+.personaButton {
+  min-width: 140px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #71717A;
+  border-radius: 8px;
+  border: 1px solid #CFCFCF;
+
+  :global(.dark) & {
+    color: #A1A1AA;
+    border: 1px solid #3F3F46;
+  }
+}
+
+.selectContent {
+  min-width: 180px;
+  background-color: white;
+  border-radius: 6px;
+  padding: 4px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  animation: slideUpAndFade 0.2s ease;
+  
+  :global(.dark) & {
+    background-color: #18181B;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  }
+}
+
+.selectItem {
+  all: unset;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #18181B;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+  position: relative;
+
+  &[data-highlighted] {
+    background-color: #F4F4F5;
+    outline: none;
+  }
+
+  :global(.dark) & {
+    color: #FAFAFA;
+
+    &[data-highlighted] {
+      background-color: #27272A;
+    }
+  }
+}
+
+.dropdownItem {
+  all: unset;
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #18181B;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #F4F4F5;
+  }
+
+  :global(.dark) & {
+    color: #FAFAFA;
+
+    &:hover {
+      background-color: #27272A;
+    }
+  }
+}
+
+.actionButtons {
+  display: flex;
+  gap: 8px;
+}
+
+.regenerateButton,
+.submitButton {
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  width: 60px;
+  height: 40px;
+  border-radius: 20px;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .buttonIcon {
+    color: #FFFFFF;
+  }
+}
+
+.regenerateButton {
+  background-color: #FFFFFF;
+  border: 1px solid #CFCFCF;
+
+  .buttonIcon {
+    color: #71717A;
+  }
+
+  &:not(:disabled):hover {
+    background-color: #F4F4F5;
+  }
+
+  :global(.dark) & {
+    background-color: #18181B;
+    border-color: #3F3F46;
+
+    .buttonIcon {
+      color: #A1A1AA;
+    }
+
+    &:not(:disabled):hover {
+      background-color: #27272A;
+    }
+  }
+}
+
+.submitButton {
+  background-color: #18181B;
+
+  &:not(:disabled):hover {
+    background-color: #27272A;
+  }
+
+  :global(.dark) & {
+    background-color: #FFFFFF;
+
+    .buttonIcon {
+      color: #18181B;
+    }
+
+    &:not(:disabled):hover {
+      background-color: #F4F4F5;
+    }
+  }
+}
+
+.itemText{
+  display: flex;
+  align-items: center;
+
+}
+
+@keyframes slideUpAndFade {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+.button2{
+  all: unset;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: 1px solid #000000;
+  color: #000;
+
+  width: 60px;
+  height: 40px;
+  border-radius: 20px;
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  .buttonIcon {
+    color: #000;
+  }
+
+  :global(.dark) & {
+    border: 1px solid #fff;
+    .buttonIcon {
+      color: #fff;
+    }
+  }
+}
+
+
+.callWord{
+  width: 100%;
+  margin-top: 21px;
+  transition: all 0.3s;
+  overflow: hidden;
+
+  .title{
+    font-size: 18px;
+    font-weight: 500;
+    margin-bottom: 12px;
+  }
+}
+
+.suggestionsContainer {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.suggestionItem {
+  all: unset;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #71717A;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  background: #F3F7FA;
+  border-radius: 8px;
+  border: 1px solid #E5E5E5;
+
+  &:hover {
+    background: #E4E4E7;
+  }
+
+  i{
+    color: #0F27AA;
+    opacity: 0.41;
+  }
+
+  :global(.dark) & {
+    background: #27272A;
+    color: #A1A1AA;
+    border-color: #3F3F46;
+
+    &:hover {
+      background: #3F3F46;
+    }
+
+    i{
+      color: #A1A1AA;
+      opacity: 1;
+    }
+  }
+}

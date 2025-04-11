@@ -1,5 +1,11 @@
 {
   "singleQuote": true,
-  "semi": false,
-  "plugins": ["@trivago/prettier-plugin-sort-imports"]
+  "trailingComma": "all",
+  "printWidth": 80,
+  "overrides": [
+    {
+      "files": ".prettierrc",
+      "options": { "parser": "json" }
+    }
+  ]
 }

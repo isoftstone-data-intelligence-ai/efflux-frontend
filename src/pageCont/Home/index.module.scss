@@ -1,0 +1,20 @@
+@import '@/styles/utils.scss';
+
+
+.pageCont{
+    min-width: 1000px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.body{
+    flex: 1;
+    display: flex;
+    height: 100%;
+    overflow: hidden;
+    .right{
+        flex:1;
+        height: 100%;
+    }
+}
