@@ -32,7 +32,7 @@ cd efflux-frontend
 Run the following to install the required dependencies:
 
 ```
-npm i
+npm i --force
 ```
 
 ### 3. Set the environment variables
