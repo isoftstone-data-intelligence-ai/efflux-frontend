@@ -9,6 +9,22 @@
 - UI 流式响应
 - 支持安装和使用任何 npm、pip 包
 
+## 界面预览
+
+### 主界面
+![主界面](./docs/images/drak.png)
+
+
+### 白色主题
+![白色主题](./docs/images/light.png)
+
+
+### 代码生成
+![代码生成](./docs/images/code.png)
+
+### 代码预览
+![代码预览](./docs/images/preview.png)
+
 ## 快速开始
 
 ### 1. 克隆仓库

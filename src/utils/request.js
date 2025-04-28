@@ -34,13 +34,15 @@ axios.interceptors.response.use(
                 window.location.href = '/login';
             }
         }
-        error.response.data = {
+        var obj = {
             code: 503,
             data:{},
             message:'',
             sub_code:503,
             sub_message:'',
         }
+        if(!error.response) return {data:obj}
+        error.response.data = obj
         return error.response;
     }
 );

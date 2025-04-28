@@ -1,5 +1,5 @@
 # 使用最新的LTS node版本，将会从Docker Hub上面拉取这个版本
-FROM node:18-alpine
+FROM registry.cn-zhangjiakou.aliyuncs.com/base2/node:18-alpine
 
 # 定义项目要上传的容器位置，也就是我们这个项目要放到那个容器中
 WORKDIR /usr/src/app
