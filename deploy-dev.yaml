@@ -65,4 +65,3 @@ spec:
     app: SERVICE
   type: ClusterIP
   sessionAffinity: None
-
