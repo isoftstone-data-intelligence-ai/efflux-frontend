@@ -25,3 +25,4 @@ EXPOSE 3000
 # 启动App, 两条命令其实一样的
 # CMD ["node", "server.js"]
 CMD ["npm", "start"]
+
